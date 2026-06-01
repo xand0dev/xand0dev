@@ -38,17 +38,17 @@ APIs to React Native apps and their deployment.
 **Frontend & Mobile**
 
 <img src="https://skillicons.dev/icons?i=react,js,ts,tailwind&theme=dark" />
-&nbsp;
-![Expo](https://img.shields.io/badge/Expo-000020?style=flat-square&logo=expo&logoColor=white)
-![React Native](https://img.shields.io/badge/React_Native-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+
+<img src="https://img.shields.io/badge/Expo-000020?style=flat-square&logo=expo&logoColor=white" />
+<img src="https://img.shields.io/badge/React_Native-20232A?style=flat-square&logo=react&logoColor=61DAFB" />
 
 **Infrastructure & Tools**
 
 <img src="https://skillicons.dev/icons?i=linux,bash,docker,git,github&theme=dark" />
-&nbsp;
-![Windows](https://img.shields.io/badge/Windows_Server-0078D6?style=flat-square&logo=windows&logoColor=white)
-![MikroTik](https://img.shields.io/badge/MikroTik%20/%20RouterOS-293239?style=flat-square&logo=mikrotik&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white)
+
+<img src="https://img.shields.io/badge/Windows_Server-0078D6?style=flat-square&logo=windows&logoColor=white" />
+<img src="https://img.shields.io/badge/MikroTik_/_RouterOS-293239?style=flat-square&logo=mikrotik&logoColor=white" />
+<img src="https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white" />
 
 </div>
 
@@ -94,11 +94,6 @@ APIs to React Native apps and their deployment.
 ### 📊 GitHub Stats
 
 <div align="center">
-
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=xand0dev&show_icons=true&include_all_commits=true&hide_border=true&title_color=34D399&icon_color=34D399&text_color=c9d1d9&bg_color=0d1117" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=xand0dev&layout=compact&langs_count=8&hide_border=true&title_color=34D399&text_color=c9d1d9&bg_color=0d1117" />
-
-<br/>
 
 <img src="https://github-readme-streak-stats.herokuapp.com/?user=xand0dev&hide_border=true&background=0d1117&ring=34D399&fire=34D399&currStreakLabel=34D399&sideLabels=c9d1d9&dates=8b949e&currStreakNum=c9d1d9&sideNums=c9d1d9" />
 
