@@ -98,16 +98,6 @@ APIs to React Native apps and their deployment.
 
 ---
 
-### 📊 GitHub Stats
-
-<div align="center">
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=xand0dev&hide_border=true&background=0d1117&ring=34D399&fire=34D399&currStreakLabel=34D399&sideLabels=c9d1d9&dates=8b949e&currStreakNum=c9d1d9&sideNums=c9d1d9" />
-
-</div>
-
----
-
 ### 🐍 Contribution graph
 
 <div align="center">
