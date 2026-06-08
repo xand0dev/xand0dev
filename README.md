@@ -81,21 +81,6 @@ APIs to React Native apps and their deployment.
 - 💳 **Payments & wallet** — LiqPay checkout for memberships and balance top-up.
 - 🤖 **AI Coach** — personalized fitness guidance powered by Google Gemini.
 
-<details>
-<summary>📸 <b>Screenshots</b> — click to expand</summary>
-
-<br/>
-
-<div align="center">
-
-| 📱 QR access pass | 🖥 Admin dashboard |
-|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/xand0dev/FITGYM-demo/main/docs/screenshots/mobile-qr-pass.png" width="200" /> | <img src="https://raw.githubusercontent.com/xand0dev/FITGYM-demo/main/docs/screenshots/web-admin-dashboard.png" width="400" /> |
-
-</div>
-
-</details>
-
 ---
 
 ### 🐍 Contribution graph
