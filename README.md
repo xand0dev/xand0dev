@@ -33,7 +33,7 @@ APIs to React Native apps and their deployment.
 
 **Backend**
 
-<img src="https://skillicons.dev/icons?i=python,django,cs,postgres,sqlite&theme=dark" />
+<img src="https://skillicons.dev/icons?i=python,django,cs,postgres&theme=dark" />
 
 **Frontend & Mobile**
 
