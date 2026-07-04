@@ -1,9 +1,9 @@
 <div align="center">
 
 # Oleksandr Riasnyi
-### Sysadmin & Full-stack Developer
+### Founder · Full-stack Developer
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=20&duration=3000&pause=800&color=34D399&center=true&vCenter=true&width=620&lines=Sysadmin+%40+IT+STEP+Academy%2C+Berdychiv;Python+%2F+Django+backend+developer;React+%2B+React+Native+full-stack;Building+FitGym+CRM+%E2%80%94+SaaS+for+fitness+clubs" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=20&duration=3000&pause=800&color=34D399&center=true&vCenter=true&width=620&lines=Founder+building+FITGYM+CRM;Multi-tenant+B2B+SaaS+for+fitness+clubs;Django+REST+%2B+React+%2B+React+Native;Sysadmin+%40+IT+STEP+Academy%2C+Berdychiv" />
 
 <br/>
 
@@ -17,13 +17,17 @@
 
 ### 👋 About
 
-**Sysadmin & programming instructor** @ IT STEP Academy, Berdychiv.
-By day I keep a fleet of Windows workstations, networking (MikroTik / RouterOS) and video
-surveillance running; by night I build full-stack products end-to-end — from Django REST
-APIs to React Native apps and their deployment.
+I'm building **FITGYM** — a multi-tenant **SaaS CRM for Ukrainian fitness clubs**:
+memberships, class booking, QR access control and payments, with a client mobile app
+**and** a web admin/owner panel sharing one REST API. First pilot — **Berdychiv Sky**,
+a real local club the system is configured for.
+
+By day I'm a **sysadmin & programming instructor** @ IT STEP Academy, Berdychiv (Windows
+fleet, MikroTik / RouterOS networking, video surveillance); the rest of the time I ship
+FITGYM end-to-end — from Django REST APIs to React Native apps, deployment and CI/CD.
 
 🎓 Software Engineering @ Berdychiv College — graduating **2026**.
-🌱 Currently going deep on multi-tenant SaaS architecture, payments and CI/CD.
+🌱 Going deep on multi-tenant SaaS architecture, payments and distribution.
 
 ---
 
@@ -33,7 +37,7 @@ APIs to React Native apps and their deployment.
 
 **Backend**
 
-<img src="https://skillicons.dev/icons?i=python,django,cs,postgres,sqlite&theme=dark" />
+<img src="https://skillicons.dev/icons?i=python,django,cs,postgres&theme=dark" />
 
 **Frontend & Mobile**
 
@@ -54,11 +58,12 @@ APIs to React Native apps and their deployment.
 
 ---
 
-### ⭐ Featured Project — FitGym CRM
+### 🚀 Building — FITGYM CRM
 
 > **[FitGym CRM →](https://github.com/xand0dev/FITGYM-demo)** — a multi-tenant **B2B SaaS**
-> for local fitness clubs: memberships, class booking, QR-based access control and payments,
-> with a client mobile app **and** a web admin panel sharing one REST API.
+> for local fitness clubs. Not a course project — an active venture: memberships, class
+> booking, QR-based access control and payments, a client mobile app and a web owner panel
+> on one REST API. **First pilot: Berdychiv Sky.**
 
 <div align="center">
 
@@ -71,30 +76,17 @@ APIs to React Native apps and their deployment.
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![LiqPay](https://img.shields.io/badge/LiqPay-00ADEF?style=flat-square&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Gemini_AI-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
+![Tests](https://img.shields.io/badge/159_backend_tests-passing-34D399?style=flat-square)
 
 </div>
 
 **Highlights**
-- 🏢 **Multi-tenant gym isolation** — every query is scoped to the user's club; no cross-tenant data leaks.
-- 📲 **QR check-in** — the app generates a signed QR pass; a scanner validates access with a green/red result.
-- ⏰ **Time-limited subscriptions** — e.g. a *Morning Pass* valid only 06:00–13:00 in the gym's timezone.
-- 💳 **Payments & wallet** — LiqPay checkout for memberships and balance top-up.
-- 🤖 **AI Coach** — personalized fitness guidance powered by Google Gemini.
-
-<details>
-<summary>📸 <b>Screenshots</b> — click to expand</summary>
-
-<br/>
-
-<div align="center">
-
-| 📱 QR access pass | 🖥 Admin dashboard |
-|:---:|:---:|
-| <img src="https://raw.githubusercontent.com/xand0dev/FITGYM-demo/main/docs/screenshots/mobile-qr-pass.png" width="200" /> | <img src="https://raw.githubusercontent.com/xand0dev/FITGYM-demo/main/docs/screenshots/web-admin-dashboard.png" width="400" /> |
-
-</div>
-
-</details>
+- 🏢 **Multi-tenant gym isolation** — every query is scoped to the user's club; fail-closed, no cross-tenant leaks.
+- 📲 **Signed QR check-in** — the app generates an HMAC-signed QR pass; a scanner validates access with a green/red result.
+- ⏰ **Time-limited subscriptions** — e.g. a *Morning Pass* valid only 08:00–13:00 in the gym's timezone, enforced at the door.
+- 💳 **Per-gym payments** — each club connects its **own LiqPay merchant** (encrypted keys); the platform charges a flat subscription, not a cut of transactions.
+- 🧾 **Staff audit log** — append-only trail of who did what (sales, wallet edits, settings), for owner transparency.
+- 🌐 **White-label** — each club gets its own branded landing (subdomain or custom domain) and client app.
 
 ---
 
@@ -110,7 +102,7 @@ APIs to React Native apps and their deployment.
 
 <div align="center">
 
-**Let's connect** — open to backend / full-stack opportunities and collaboration.
+**Let's talk** — pilot gyms, collaboration, and backend / full-stack work all welcome.
 
 <a href="https://www.linkedin.com/in/oleksandr-riasnyi"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
 <a href="mailto:oleksandr.riasnyi.dev@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
