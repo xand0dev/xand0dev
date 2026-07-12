@@ -1,5 +1,16 @@
 <div align="center">
 
+<!-- Regenerate the profile art after changing its source or copy:
+     python3 -m pip install -r scripts/requirements.txt
+     python3 scripts/make_ascii_svg.py <photo> assets/oleksandr-ascii.svg
+     python3 scripts/make_info_card.py -->
+<table>
+  <tr>
+    <td valign="top"><img src="./assets/oleksandr-ascii.svg" width="360" alt="Oleksandr Riasnyi rendered as an ASCII portrait" /></td>
+    <td valign="top"><img src="./assets/fitgym-card.svg" width="472" alt="Oleksandr Riasnyi profile: founder, full-stack developer and FITGYM builder" /></td>
+  </tr>
+</table>
+
 # Oleksandr Riasnyi
 ### Founder · Full-stack Developer
 
