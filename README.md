@@ -17,12 +17,14 @@
 
 ### 👋 About
 
-I build FITGYM end-to-end: Django REST APIs, React owner panels, React Native apps,
-deployment and CI/CD. Its first pilot is **Berdychiv Sky**, a real local club the platform
-is configured for.
+**By day**, I work as a sysadmin and programming instructor at IT STEP Academy in Berdychiv —
+supporting Windows infrastructure, MikroTik / RouterOS networks and video surveillance.
 
-By day, I'm a **sysadmin & programming instructor** at IT STEP Academy, Berdychiv,
-supporting Windows fleets, MikroTik / RouterOS networks and video surveillance.
+**By night**, I build **FITGYM** end-to-end: a multi-tenant SaaS CRM for Ukrainian fitness
+clubs, from Django REST APIs and payments to React owner panels, React Native apps,
+deployment and CI/CD.
+
+FITGYM is preparing for its first pilot at **Berdychiv Sky**.
 
 🎓 Software Engineering at Berdychiv College — graduating **2026**.
 
