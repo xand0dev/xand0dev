@@ -2,16 +2,20 @@
 from pathlib import Path
 
 OUTPUT = Path("assets/xand-terminal.svg")
-W, H = 560, 326
+W, H = 472, 326
 PAD, TITLE_H = 22, 34
-ART_X, ART_Y, ART_W = 34, 112, 492
+ART_X, ART_Y, ART_W = 25, 108, 422
 
 ART = [
-    "##  ##    ####    ##   ##   ######",
-    " ## ##    ## ##    ###  ##   ##   ##",
-    "  ###    ######   ## # ##   ##   ##",
-    " ## ##  ##    ##  ##  ###   ##   ##",
-    "##  ##  ##    ##  ##   ##   ######",
+    "##        ##       ####       ##         ##       ########",
+    " ###      ###      ## ##      ###        ##       ##     ##",
+    "  ###    ###      ##   ##     ####       ##       ##      ##",
+    "   ###  ###      #########    ## ##      ##       ##      ##",
+    "    ######      ##       ##   ##  ##     ##       ##      ##",
+    "   ###  ###     ##       ##   ##   ##    ##       ##      ##",
+    "  ###    ###    ##       ##   ##    ##   ##       ##      ##",
+    " ###      ###   ##       ##   ##     ##  ##       ##     ##",
+    "##        ##    ##       ##   ##      #####       ########",
 ]
 
 
@@ -41,17 +45,17 @@ parts.append(typed_text("booting founder mode...", PAD, 62, 0.1, color="#8b949e"
 parts.append(typed_text("loading: full-stack builder", PAD, 84, 0.8, color="#58a6ff"))
 
 for index, row in enumerate(ART):
-    delay = 1.55 + index * 0.16
-    y = ART_Y + index * 27
+    delay = 1.55 + index * 0.1
+    y = ART_Y + index * 17
     parts.append(
-        f'<clipPath id="art-{index}"><rect x="{ART_X}" y="{y - 22}" width="0" height="28">'
-        f'<animate attributeName="width" from="0" to="{ART_W}" begin="{delay}s" dur="0.45s" fill="freeze"/>'
+        f'<clipPath id="art-{index}"><rect x="{ART_X}" y="{y - 14}" width="0" height="20">'
+        f'<animate attributeName="width" from="0" to="{ART_W}" begin="{delay}s" dur="0.36s" fill="freeze"/>'
         f'</rect></clipPath>'
-        f'<text xml:space="preserve" x="{ART_X}" y="{y}" fill="#34d399" font-size="25" font-weight="700" textLength="{ART_W}" lengthAdjust="spacing" clip-path="url(#art-{index})">{row}</text>'
+        f'<text xml:space="preserve" x="{ART_X}" y="{y}" fill="#34d399" font-size="10.5" font-weight="700" textLength="{ART_W}" lengthAdjust="spacing" clip-path="url(#art-{index})">{row}</text>'
     )
 
-parts.append(typed_text("XAND — build. ship. repeat.", PAD, 274, 2.55, color="#c9d1d9", bold=True))
-parts.append(typed_text("status: FITGYM pilot in progress", PAD, 298, 3.15, color="#8b949e"))
+parts.append(typed_text("XAND — build. ship. repeat.", PAD, 274, 2.65, color="#c9d1d9", bold=True))
+parts.append(typed_text("status: FITGYM pilot in progress", PAD, 298, 3.25, color="#8b949e"))
 parts.extend((
     f'<rect x="{PAD + 275}" y="286" width="8" height="15" fill="#34d399">'
     '<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" dur="1s" repeatCount="indefinite"/></rect>',

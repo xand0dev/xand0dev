@@ -5,7 +5,7 @@
      python3 scripts/make_info_card.py -->
 <table>
   <tr>
-    <td valign="top"><img src="./assets/xand-terminal.svg" width="360" alt="Animated XAND ASCII terminal" /></td>
+    <td valign="top"><img src="./assets/xand-terminal.svg" width="472" alt="Animated XAND ASCII terminal" /></td>
     <td valign="top"><img src="./assets/fitgym-card.svg" width="472" alt="Oleksandr Riasnyi profile: founder, full-stack developer and FITGYM builder" /></td>
   </tr>
 </table>
