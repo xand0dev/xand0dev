@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+  <title id="title">Python backend engineering profile</title>
+  <desc id="desc">Oleksandr Riasnyi builds multi-tenant Django systems with security, automated tests, and end-to-end delivery.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="338" rx="24" fill="url(#background)" stroke="#30363d" stroke-width="2"/>
+  <circle cx="1080" cy="80" r="115" fill="#ef4444" opacity="0.08" filter="url(#glow)"/>
+  <path d="M48 54h72" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+
+  <text x="48" y="96" fill="#8b949e" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" letter-spacing="3">BACKEND / PRODUCT SYSTEMS</text>
+  <text x="48" y="158" fill="#f0f6fc" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="48" font-weight="700">From business rules to a reliable release.</text>
+  <text x="48" y="205" fill="#b1bac4" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="25">Django · DRF · PostgreSQL · APIs · automated tests · delivery</text>
+
+  <g transform="translate(48 250)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="600">
+    <rect width="238" height="48" rx="12" fill="#21262d" stroke="#30363d"/>
+    <circle cx="25" cy="24" r="6" fill="#3fb950"/>
+    <text x="43" y="30" fill="#c9d1d9">MULTI-TENANT</text>
+
+    <g transform="translate(254)">
+      <rect width="188" height="48" rx="12" fill="#21262d" stroke="#30363d"/>
+      <circle cx="25" cy="24" r="6" fill="#58a6ff"/>
+      <text x="43" y="30" fill="#c9d1d9">SECURITY</text>
+    </g>
+
+    <g transform="translate(458)">
+      <rect width="184" height="48" rx="12" fill="#21262d" stroke="#30363d"/>
+      <circle cx="25" cy="24" r="6" fill="#d2a8ff"/>
+      <text x="43" y="30" fill="#c9d1d9">TESTING</text>
+    </g>
+
+    <g transform="translate(658)">
+      <rect width="190" height="48" rx="12" fill="#21262d" stroke="#30363d"/>
+      <circle cx="25" cy="24" r="6" fill="#f0883e"/>
+      <text x="43" y="30" fill="#c9d1d9">DELIVERY</text>
+    </g>
+  </g>
+
+  <g transform="translate(930 250)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="0" y="16" fill="#8b949e" font-size="14" letter-spacing="2">CURRENT PRODUCT</text>
+    <text x="0" y="44" fill="#f0f6fc" font-size="20" font-weight="700">FITGYM / PILOT</text>
+  </g>
+</svg>

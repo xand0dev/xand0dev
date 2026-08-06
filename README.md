@@ -1,114 +1,75 @@
 <div align="center">
 
-<!-- Regenerate the profile art after changing its copy:
-     python3 scripts/make_xand_terminal.py
-     python3 scripts/make_info_card.py -->
-<table>
-  <tr>
-    <td valign="top"><img src="https://raw.githubusercontent.com/xand0dev/xand0dev/5b8b960/assets/xand-terminal.svg" width="472" alt="Animated XAND ASCII terminal" /></td>
-    <td valign="top"><img src="./assets/fitgym-card.svg" width="472" alt="Oleksandr Riasnyi profile: founder, full-stack developer and FITGYM builder" /></td>
-  </tr>
-</table>
-
 # Oleksandr Riasnyi
-### Founder · Full-stack Developer
 
-> Building **FITGYM** — a SaaS CRM for Ukrainian fitness clubs.
+### Python Backend Developer · Django / DRF / PostgreSQL
+
+Building a pilot-ready multi-tenant SaaS CRM with secure APIs, real business rules, and automated backend tests.
+
+[![FITGYM Product](https://img.shields.io/badge/FITGYM_PRODUCT-ef4444?style=for-the-badge&logoColor=white)](https://github.com/xand0dev/FITGYM-demo)
+[![Watch Pilot Flow](https://img.shields.io/badge/WATCH_PILOT_FLOW-161b22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/xand0dev/FITGYM-demo/blob/main/assets/sky-public-booking-demo.mp4)
+[![LinkedIn](https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/oleksandr-riasnyi/)
 
 <br/>
 
-<a href="https://fitgym-mobile-web.vercel.app"><img src="https://img.shields.io/badge/View_FITGYM_demo-34D399?style=for-the-badge&logo=vercel&logoColor=white" alt="Open FITGYM demo" /></a>
-<a href="mailto:oleksandr.riasnyi.dev@gmail.com?subject=FITGYM%20demo"><img src="https://img.shields.io/badge/Request_a_demo-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Request a FITGYM demo by email" /></a>
-<a href="https://www.linkedin.com/in/oleksandr-riasnyi"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn" /></a>
+<img src="./assets/backend-profile.svg" width="100%" alt="Python backend engineering profile: multi-tenant architecture, security, automated tests and end-to-end delivery" />
 
 </div>
 
----
+## What I build
 
-### 👋 About
+I design backend systems around **real business constraints**, not demo-only CRUD. My primary stack is Python, Django, Django REST Framework, and PostgreSQL; React and React Native are supporting tools when a product needs end-to-end delivery.
 
-**By day**, I work as a sysadmin and programming instructor at IT STEP Academy in Berdychiv —
-supporting Windows infrastructure, MikroTik / RouterOS networks and video surveillance.
+My current focus is **FITGYM**, a multi-tenant SaaS CRM moving through controlled pre-launch with Berdychiv Sky. My work spans backend architecture, API design, authorization, business rules, automated testing, integrations, and release engineering across the product lifecycle.
 
-**By night**, I build **FITGYM** end-to-end: a multi-tenant SaaS CRM for Ukrainian fitness
-clubs, from Django REST APIs and payments to React owner panels, React Native apps,
-deployment and CI/CD.
+## Backend engineering
 
-FITGYM is preparing for its first pilot at **Berdychiv Sky**.
+- **Multi-tenant boundaries** — tenant-scoped queries, explicit role checks, and object-ownership enforcement on the server.
+- **Business invariants** — booking eligibility, capacity, duplicate prevention, and time-window rules enforced beyond the UI.
+- **Security-sensitive flows** — HMAC-signed QR access, rate limiting, audit trails, and hardened public booking endpoints.
+- **Transactional workflows** — wallet ledger operations and LiqPay payment flows designed around traceable state changes.
+- **Delivery discipline** — automated backend tests, CI gates, Docker deployments, release preflight, and smoke checks.
 
-🎓 Software Engineering at Berdychiv College — graduating **2026**.
+## FITGYM — Product & Engineering
 
----
+> **Private product codebase · Public engineering showcase · Controlled pre-launch with Berdychiv Sky**
 
-### 🛠 Tech Stack
+FITGYM combines a Django/DRF API and PostgreSQL data model with React administration workflows and a React Native/Expo member application. The system covers tenant-aware CRM operations, scheduling and booking, memberships, access control, payments, and staff accountability.
 
-<div align="center">
+The public repository is intentionally a **product and engineering showcase**, not a source-code distribution. It contains synthetic product screens, short workflow videos, architecture context, and an honest launch status.
 
-**Backend**
+[Explore the FITGYM product →](https://github.com/xand0dev/FITGYM-demo)<br/>
+[Watch the 19-second pilot workflow →](https://github.com/xand0dev/FITGYM-demo/blob/main/assets/sky-public-booking-demo.mp4)
 
-<img src="https://skillicons.dev/icons?i=python,django,postgres&theme=dark" alt="Python, Django and PostgreSQL" />
+For a technical interview, I can walk through sanitized architecture decisions, representative test output, security boundaries, and non-proprietary code fragments.
 
-**Frontend & Mobile**
+## Public code — TraceFlow
 
-<img src="https://skillicons.dev/icons?i=react,ts,tailwind&theme=dark" alt="React, TypeScript and Tailwind CSS" />
+[**TraceFlow**](https://github.com/xand0dev/TraceFlow) is an MVP VS Code extension that turns Django, React, and React Native projects into an interactive architecture graph.
 
-<img src="https://img.shields.io/badge/Expo-000020?style=flat-square&logo=expo&logoColor=white" alt="Expo" />
-<img src="https://img.shields.io/badge/React_Native-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React Native" />
+The public implementation combines a Python `ast` parser, TypeScript, the VS Code API, WebSockets, and ReactFlow. It is distributed through the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=xand0dev.traceflow-viz) and [Open VSX](https://open-vsx.org/extension/xand0dev/traceflow-viz).
 
-**Infrastructure & Tools**
+`Python AST analysis` · `TypeScript extension host` · `ReactFlow webview` · `local telemetry`
 
-<img src="https://skillicons.dev/icons?i=linux,docker,git&theme=dark" alt="Linux, Docker and Git" />
+## Stack
 
-<img src="https://img.shields.io/badge/Windows_Server-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows Server" />
-<img src="https://img.shields.io/badge/MikroTik_/_RouterOS-293239?style=flat-square&logo=mikrotik&logoColor=white" alt="MikroTik RouterOS" />
+| Focus | Tools and practices |
+|---|---|
+| **Backend** | Python · Django · Django REST Framework · PostgreSQL · REST APIs · automated testing |
+| **Architecture & security** | Multi-tenancy · RBAC · object ownership · HMAC · audit logging · rate limiting |
+| **Delivery** | Docker · GitHub Actions · Render · Neon · Cloudflare Pages · release smoke checks |
+| **Product surfaces** | TypeScript · React · React Native · Expo |
 
-</div>
-
----
-
-### 🚀 Building — FITGYM CRM
-
-**[FITGYM CRM →](https://github.com/xand0dev/FITGYM-demo)** is a multi-tenant B2B SaaS
-for local fitness clubs, with client mobile and web owner panels on one REST API.
-
-<div align="center">
-
-<a href="https://fitgym-backend-ivk9.onrender.com/api/docs/"><img src="https://img.shields.io/badge/Live_API_(Swagger)-34D399?style=for-the-badge&logoColor=white" alt="Open the live FITGYM API documentation" /></a>
-<a href="https://fitgym-mobile-web.vercel.app"><img src="https://img.shields.io/badge/Mobile_demo-000020?style=for-the-badge&logo=vercel&logoColor=white" alt="Open the FITGYM mobile demo" /></a>
-<a href="https://github.com/xand0dev/FITGYM-demo"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white" alt="Open FITGYM source code" /></a>
-
-![Django REST](https://img.shields.io/badge/Django_REST-092E20?style=flat-square&logo=django&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![React Native](https://img.shields.io/badge/React_Native-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![LiqPay](https://img.shields.io/badge/LiqPay-00ADEF?style=flat-square&logoColor=white)
-
-</div>
-
-**What it does**
-- 🏢 **Multi-tenant gym isolation** — every query is scoped to the user's club; fail-closed, no cross-tenant leaks.
-- 📲 **Signed QR check-in** — the app generates an HMAC-signed QR pass; a scanner validates access with a green/red result.
-- ⏰ **Time-limited subscriptions** — e.g. a *Morning Pass* valid only 08:00–13:00 in the gym's timezone, enforced at the door.
-- 💳 **Per-gym payments** — each club connects its **own LiqPay merchant** (encrypted keys); the platform charges a flat subscription, not a cut of transactions.
-- 🧾 **Staff audit log** — append-only trail of who did what (sales, wallet edits, settings), for owner transparency.
-- 🌐 **White-label** — each club gets its own branded landing (subdomain or custom domain) and client app.
+<details>
+<summary><strong>Additional operational context</strong></summary>
+<br/>
+Supporting a Windows workstation fleet and real users has sharpened my production debugging, incident ownership, and communication. I also teach Python and robotics, which keeps technical explanations practical and precise.
+</details>
 
 ---
 
-### 🐍 Contribution graph
+### Currently open to
 
-<div align="center">
+**Python Backend Developer** and backend-leaning Full-Stack roles, with a focus on Django/DRF systems.
 
-<img src="https://raw.githubusercontent.com/xand0dev/xand0dev/output/github-contribution-grid-snake-dark.svg" alt="Animated GitHub contribution graph" />
-
-</div>
-
----
-
-<div align="center">
-
-**Let's talk** — pilot gyms, collaboration and backend / full-stack work.
-
-<a href="https://www.linkedin.com/in/oleksandr-riasnyi"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn" /></a>
-<a href="mailto:oleksandr.riasnyi.dev@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Oleksandr" /></a>
-
-</div>
+[LinkedIn](https://www.linkedin.com/in/oleksandr-riasnyi/) · [Email](mailto:oleksandr.riasnyi.dev@gmail.com)
