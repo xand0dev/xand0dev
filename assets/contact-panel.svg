@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-labelledby="title desc">
+  <title id="title">Open to full-stack product engineering roles</title>
+  <desc id="desc">Oleksandr Riasnyi is open to full-stack product engineering and Python backend roles across web, mobile and cloud delivery.</desc>
+  <defs>
+    <linearGradient id="footerBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A0B0E"/>
+      <stop offset="0.72" stop-color="#111318"/>
+      <stop offset="1" stop-color="#210A0E"/>
+    </linearGradient>
+    <linearGradient id="footerRed" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#F43F4F"/>
+      <stop offset="1" stop-color="#B8081C"/>
+    </linearGradient>
+    <linearGradient id="lineFade" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#E11D2E"/>
+      <stop offset="1" stop-color="#E11D2E" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="footerGrid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#FFFFFF" stroke-opacity="0.025"/>
+    </pattern>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="258" rx="24" fill="url(#footerBg)" stroke="#30333A" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="258" rx="24" fill="url(#footerGrid)"/>
+  <rect x="1" y="1" width="10" height="258" rx="5" fill="url(#footerRed)"/>
+
+  <g transform="translate(52 42)">
+    <text x="0" y="18" fill="#8C929E" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="700" letter-spacing="3">NEXT SYSTEM / YOURS?</text>
+    <text x="0" y="78" fill="#F7F8FA" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="43" font-weight="800">Complex products worth owning.</text>
+    <text x="0" y="121" fill="#B6BBC5" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="21">Business rules · web · mobile · infrastructure · release</text>
+    <rect x="0" y="148" width="600" height="3" rx="1.5" fill="url(#lineFade)"/>
+    <text x="0" y="178" fill="#D8DBE1" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700">DJANGO  /  REACT  /  REACT NATIVE  /  CI/CD</text>
+  </g>
+
+  <g transform="translate(820 35)">
+    <rect width="326" height="190" rx="19" fill="#15171C" stroke="#393C44" stroke-width="2"/>
+    <circle cx="28" cy="30" r="6" fill="#3FB950"/>
+    <text x="45" y="35" fill="#D8DBE1" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.8">OPEN TO</text>
+    <path d="M24 58h278" stroke="#2D3037"/>
+    <text x="24" y="91" fill="#F7F8FA" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="700">Full-Stack Engineer</text>
+    <text x="24" y="122" fill="#C0C5CE" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="17">Python / Django Backend</text>
+    <path d="M24 145h278" stroke="#2D3037"/>
+    <text x="24" y="173" fill="#F43F4F" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.4">REMOTE  ·  HYBRID</text>
+  </g>
+</svg>
