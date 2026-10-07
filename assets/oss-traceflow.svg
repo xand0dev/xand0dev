@@ -4,7 +4,7 @@
 .s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
 .breathe{animation:breathe 4s ease-in-out infinite}
-</style>
+.compact{display:none} @media (max-width:300px){.full{display:none} .compact{display:inline}}</style>
 <defs>
 <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
@@ -17,12 +17,16 @@
 </defs>
 
 <rect x="1" y="1" width="598" height="138" rx="14" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
-<g>
+<g class="full">
   <text x="34" y="56" class="s" font-size="27" fill="#F2F3F5" font-weight="800" letter-spacing="-0.8" >TraceFlow</text>
   <text x="578" y="30" class="m" font-size="14" fill="#5E636B" font-weight="700" text-anchor="end" >↗</text>
   <path d="M452 44 L544 64" stroke="#2A2C31" stroke-width="1.5" stroke-dasharray="3 4"/><circle r="3" fill="#FF2A2A"><animateMotion dur="1.8s" begin="0.0s" repeatCount="indefinite" path="M452 44 L544 64"/></circle><circle r="3" fill="#FF2A2A"><animateMotion dur="1.8s" begin="0.9s" repeatCount="indefinite" path="M452 44 L544 64"/></circle><path d="M544 64 L478 104" stroke="#2A2C31" stroke-width="1.5" stroke-dasharray="3 4"/><circle r="3" fill="#9EA4AD"><animateMotion dur="1.8s" begin="0.3s" repeatCount="indefinite" path="M544 64 L478 104"/></circle><circle r="3" fill="#9EA4AD"><animateMotion dur="1.8s" begin="1.2s" repeatCount="indefinite" path="M544 64 L478 104"/></circle><path d="M478 104 L452 44" stroke="#2A2C31" stroke-width="1.5" stroke-dasharray="3 4"/><circle r="3" fill="#9EA4AD"><animateMotion dur="1.8s" begin="0.6s" repeatCount="indefinite" path="M478 104 L452 44"/></circle><circle r="3" fill="#9EA4AD"><animateMotion dur="1.8s" begin="1.5s" repeatCount="indefinite" path="M478 104 L452 44"/></circle><rect x="432" y="33" width="40" height="22" rx="5" fill="#0B0C0E" stroke="#4A4E55" stroke-width="1.5"/><text x="452" y="48" class="m" font-size="10" fill="#C9CDD3" font-weight="700" text-anchor="middle" letter-spacing="1" >WEB</text><rect x="524" y="53" width="40" height="22" rx="5" fill="#0B0C0E" stroke="#4A4E55" stroke-width="1.5"/><text x="544" y="68" class="m" font-size="10" fill="#C9CDD3" font-weight="700" text-anchor="middle" letter-spacing="1" >API</text><rect x="458" y="93" width="40" height="22" rx="5" fill="#0B0C0E" stroke="#4A4E55" stroke-width="1.5"/><text x="478" y="108" class="m" font-size="10" fill="#C9CDD3" font-weight="700" text-anchor="middle" letter-spacing="1" >DB</text>
   <text x="36" y="90" class="s" font-size="16.5" fill="#9A9FA7" >Architecture and live traffic, inside VS Code.</text>
-  <text x="36" y="116" class="m" font-size="12" fill="#5E636B" font-weight="600" letter-spacing="1.6" xml:space="preserve">VS CODE · OPEN VSX</text>
+  <text x="36" y="116" class="m" font-size="12" fill="#5E636B" font-weight="600" letter-spacing="1.6" xml:space="preserve">VS CODE · OPEN VSX   159 DOWNLOADS</text>
+</g>
+<g class="compact">
+  <text x="34" y="92" class="s" font-size="62" fill="#F2F3F5" font-weight="800" letter-spacing="-1.5" >TraceFlow</text>
+  <text x="570" y="92" class="m" font-size="44" fill="#FF2A2A" font-weight="700" text-anchor="end" >↗</text>
 </g>
 
 </svg>

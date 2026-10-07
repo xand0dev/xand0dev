@@ -4,7 +4,7 @@
 .s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
 .breathe{animation:breathe 4s ease-in-out infinite}
-</style>
+.compact{display:none} @media (max-width:300px){.full{display:none} .compact{display:inline}}</style>
 <defs>
 <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
@@ -17,13 +17,19 @@
 </defs>
 
 <rect x="1" y="1" width="598" height="298" rx="16" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
-<g>
-  <text x="36" y="52" class="m" font-size="12" fill="#5E636B" font-weight="700" letter-spacing="2.4" xml:space="preserve">MULTI-TENANT SAAS  ·  DEMO ↗</text>
+<g class="full">
+  <text x="36" y="52" class="m" font-size="12" fill="#5E636B" font-weight="700" letter-spacing="2.4" xml:space="preserve">MULTI-TENANT SAAS  ·  DEMO ↗  ·  443 COMMITS</text>
   <text x="34" y="104" class="s" font-size="38" fill="#F2F3F5" font-weight="800" letter-spacing="-1.2" >FITGYM</text>
   <text x="36" y="146" class="s" font-size="18" fill="#9A9FA7" >CRM for fitness clubs: a tenant per</text><text x="36" y="172" class="s" font-size="18" fill="#9A9FA7" >club, memberships, schedule,</text><text x="36" y="198" class="s" font-size="18" fill="#9A9FA7" >QR check-in and a member app.</text>
   <text x="36" y="244" class="m" font-size="13.5" fill="#B5BAC1" font-weight="500" >co-founder · backend · admin · mobile</text>
   <text x="36" y="268" class="m" font-size="12.5" fill="#5E636B" font-weight="500" xml:space="preserve">Django  ·  PostgreSQL  ·  React  ·  React Native  ·  Docker</text>
   <rect x="431.5" y="125.5" width="7" height="7" fill="#34373C"/><rect x="431.5" y="135.5" width="7" height="7" fill="#34373C"/><rect x="441.5" y="125.5" width="7" height="7" fill="#34373C"/><rect x="441.5" y="145.5" width="7" height="7" fill="#34373C"/><rect x="451.5" y="125.5" width="7" height="7" fill="#34373C"/><rect x="451.5" y="145.5" width="7" height="7" fill="#34373C"/><rect x="461.5" y="125.5" width="7" height="7" fill="#34373C"/><rect x="461.5" y="135.5" width="7" height="7" fill="#34373C"/><rect x="461.5" y="145.5" width="7" height="7" fill="#34373C"/><rect x="471.5" y="85.5" width="7" height="7" fill="#34373C"/><rect x="471.5" y="105.5" width="7" height="7" fill="#34373C"/><rect x="471.5" y="115.5" width="7" height="7" fill="#34373C"/><rect x="471.5" y="155.5" width="7" height="7" fill="#34373C"/><rect x="471.5" y="175.5" width="7" height="7" fill="#34373C"/><rect x="481.5" y="85.5" width="7" height="7" fill="#34373C"/><rect x="481.5" y="95.5" width="7" height="7" fill="#34373C"/><rect x="481.5" y="105.5" width="7" height="7" fill="#34373C"/><rect x="481.5" y="115.5" width="7" height="7" fill="#34373C"/><rect x="481.5" y="135.5" width="7" height="7" fill="#34373C"/><rect x="481.5" y="165.5" width="7" height="7" fill="#34373C"/><rect x="481.5" y="185.5" width="7" height="7" fill="#34373C"/><rect x="491.5" y="85.5" width="7" height="7" fill="#34373C"/><rect x="491.5" y="95.5" width="7" height="7" fill="#34373C"/><rect x="491.5" y="115.5" width="7" height="7" fill="#34373C"/><rect x="491.5" y="125.5" width="7" height="7" fill="#34373C"/><rect x="491.5" y="155.5" width="7" height="7" fill="#34373C"/><rect x="491.5" y="185.5" width="7" height="7" fill="#34373C"/><rect x="501.5" y="165.5" width="7" height="7" fill="#34373C"/><rect x="501.5" y="185.5" width="7" height="7" fill="#34373C"/><rect x="511.5" y="125.5" width="7" height="7" fill="#34373C"/><rect x="511.5" y="145.5" width="7" height="7" fill="#34373C"/><rect x="511.5" y="165.5" width="7" height="7" fill="#34373C"/><rect x="521.5" y="145.5" width="7" height="7" fill="#34373C"/><rect x="531.5" y="165.5" width="7" height="7" fill="#34373C"/><rect x="431.5" y="85.5" width="27" height="27" fill="none" stroke="#A9AEB5" stroke-width="2.5"/><rect x="440" y="94" width="10" height="10" fill="#A9AEB5"/><rect x="511.5" y="85.5" width="27" height="27" fill="none" stroke="#A9AEB5" stroke-width="2.5"/><rect x="520" y="94" width="10" height="10" fill="#A9AEB5"/><rect x="431.5" y="165.5" width="27" height="27" fill="none" stroke="#A9AEB5" stroke-width="2.5"/><rect x="440" y="174" width="10" height="10" fill="#A9AEB5"/><g><rect x="420" y="84" width="130" height="2" fill="#FF2A2A" filter="url(#glow)"/><animateTransform attributeName="transform" type="translate" values="0 0;0 110;0 0" dur="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></g>
+</g>
+<g class="compact">
+  <circle cx="44" cy="62" r="7" fill="#FF2A2A" filter="url(#glow)"/>
+  <text x="66" y="72" class="m" font-size="28" fill="#5E636B" font-weight="700" letter-spacing="2" >DEMO ↗</text>
+  <text x="34" y="172" class="s" font-size="78" fill="#F2F3F5" font-weight="800" letter-spacing="-2" >FITGYM</text>
+  <text x="36" y="236" class="s" font-size="36" fill="#9A9FA7" >CRM for fitness clubs</text>
 </g>
 
 </svg>

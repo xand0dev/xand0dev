@@ -1,4 +1,7 @@
-<img src="assets/hero.svg" width="100%" alt="Oleksandr Riasnyi — full-stack engineer and product builder. Django, React, React Native, Swift." />
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/hero-static.svg" />
+  <img src="assets/hero.svg" width="100%" alt="Oleksandr Riasnyi — full-stack engineer and product builder. Django, React, React Native, Swift." />
+</picture>
 
 <br/>
 
@@ -21,6 +24,10 @@
   <a href="https://github.com/xand0dev/django-saas-toolkit"><img src="assets/oss-django-saas-toolkit.svg" width="49%" alt="django-saas-toolkit — review, memory and commits for Django SaaS." /></a>
   <a href="https://github.com/xand0dev/ai-pool-starter"><img src="assets/oss-ai-pool.svg" width="49%" alt="AI Pool Starter — one tool, the whole model pool. Workshop, KAI 2026." /></a>
 </p>
+
+<img src="assets/label-stack.svg" width="100%" alt="Stack" />
+
+<img src="assets/stack.svg" width="100%" alt="Stack by layer. API: Python, Django, FastAPI. Web: TypeScript, React, Vite. Mobile: React Native, Expo, Swift. AI: Ollama, Claude, OpenAI. Data: PostgreSQL, Redis, SQLite. Ship: Docker, GitHub Actions, Cloudflare." />
 
 <img src="assets/label-activity.svg" width="100%" alt="Activity" />
 

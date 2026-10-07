@@ -4,7 +4,7 @@
 .s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
 .breathe{animation:breathe 4s ease-in-out infinite}
-</style>
+.compact{display:none} @media (max-width:300px){.full{display:none} .compact{display:inline}}</style>
 <defs>
 <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
@@ -17,12 +17,16 @@
 </defs>
 
 <rect x="1" y="1" width="598" height="138" rx="14" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
-<g>
+<g class="full">
   <text x="34" y="56" class="s" font-size="27" fill="#F2F3F5" font-weight="800" letter-spacing="-0.8" >VoidBar</text>
   <text x="578" y="30" class="m" font-size="14" fill="#5E636B" font-weight="700" text-anchor="end" >↗</text>
   <rect x="430" y="32" width="124" height="78" rx="7" fill="#0B0C0E" stroke="#2A2C31" stroke-width="1.5"/><rect x="474" y="32" width="36" height="10" rx="5" fill="#000" stroke="#3A3D42"><animate attributeName="width" values="36;108;108;36;36" keyTimes="0;.18;.6;.78;1" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1;.45 0 .55 1;0 0 1 1"/><animate attributeName="x" values="474;438;438;474;474" keyTimes="0;.18;.6;.78;1" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1;.45 0 .55 1;0 0 1 1"/><animate attributeName="height" values="10;38;38;10;10" keyTimes="0;.18;.6;.78;1" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1;.45 0 .55 1;0 0 1 1"/></rect><rect x="466" y="45" width="4" height="12" rx="2" fill="#9EA4AD" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.56;.6;1" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="5;13;8;12;5" dur="0.60s" repeatCount="indefinite"/></rect><rect x="474" y="45" width="4" height="12" rx="2" fill="#9EA4AD" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.56;.6;1" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="5;13;8;12;5" dur="0.68s" repeatCount="indefinite"/></rect><rect x="482" y="45" width="4" height="12" rx="2" fill="#9EA4AD" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.56;.6;1" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="5;13;8;12;5" dur="0.76s" repeatCount="indefinite"/></rect><rect x="490" y="45" width="4" height="12" rx="2" fill="#FF2A2A" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.56;.6;1" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="5;13;8;12;5" dur="0.84s" repeatCount="indefinite"/></rect><rect x="498" y="45" width="4" height="12" rx="2" fill="#9EA4AD" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.56;.6;1" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="5;13;8;12;5" dur="0.92s" repeatCount="indefinite"/></rect><rect x="506" y="45" width="4" height="12" rx="2" fill="#9EA4AD" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.56;.6;1" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="5;13;8;12;5" dur="1.00s" repeatCount="indefinite"/></rect><rect x="514" y="45" width="4" height="12" rx="2" fill="#9EA4AD" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.16;.22;.56;.6;1" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="5;13;8;12;5" dur="1.08s" repeatCount="indefinite"/></rect>
   <text x="36" y="90" class="s" font-size="16.5" fill="#9A9FA7" >Your MacBook notch, finally useful.</text>
   <text x="36" y="116" class="m" font-size="12" fill="#5E636B" font-weight="600" letter-spacing="1.6" xml:space="preserve">SWIFT 6 · MACOS   ★ 2   v0.6.0</text>
+</g>
+<g class="compact">
+  <text x="34" y="92" class="s" font-size="62" fill="#F2F3F5" font-weight="800" letter-spacing="-1.5" >VoidBar</text>
+  <text x="570" y="92" class="m" font-size="44" fill="#FF2A2A" font-weight="700" text-anchor="end" >↗</text>
 </g>
 
 </svg>

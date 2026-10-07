@@ -4,7 +4,7 @@
 .s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
 .breathe{animation:breathe 4s ease-in-out infinite}
-</style>
+.compact{display:none} @media (max-width:300px){.full{display:none} .compact{display:inline}}</style>
 <defs>
 <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
@@ -17,12 +17,16 @@
 </defs>
 
 <rect x="1" y="1" width="598" height="138" rx="14" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
-<g>
+<g class="full">
   <text x="34" y="56" class="s" font-size="27" fill="#F2F3F5" font-weight="800" letter-spacing="-0.8" >EDEN//0</text>
   <text x="578" y="30" class="m" font-size="14" fill="#5E636B" font-weight="700" text-anchor="end" >↗</text>
   <circle cx="498" cy="72" r="46" fill="none" stroke="#1F2125" stroke-width="1.5" stroke-dasharray="2 5"/><circle cx="0" cy="0" r="3.5" fill="#FF2A2A"><animateMotion dur="8.3s" repeatCount="indefinite" path="M499 93 L482 89 L496 70 L530 75 L499 93" calcMode="paced"/></circle><circle cx="0" cy="0" r="3.5" fill="#FF2A2A"><animateMotion dur="11.3s" repeatCount="indefinite" path="M502 110 L467 78 L474 75 L512 92 L502 110" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.6" fill="#9EA4AD"><animateMotion dur="11.3s" repeatCount="indefinite" path="M470 68 L497 70 L499 50 L498 73 L470 68" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.6" fill="#9EA4AD"><animateMotion dur="11.7s" repeatCount="indefinite" path="M471 76 L518 54 L511 65 L504 56 L471 76" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.6" fill="#9EA4AD"><animateMotion dur="9.5s" repeatCount="indefinite" path="M501 69 L503 78 L514 69 L490 64 L501 69" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.6" fill="#9EA4AD"><animateMotion dur="12.0s" repeatCount="indefinite" path="M488 81 L479 61 L520 58 L528 58 L488 81" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.6" fill="#9EA4AD"><animateMotion dur="11.2s" repeatCount="indefinite" path="M495 67 L522 44 L516 60 L496 64 L495 67" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.6" fill="#9EA4AD"><animateMotion dur="7.8s" repeatCount="indefinite" path="M488 67 L528 85 L501 72 L503 57 L488 67" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.2" fill="#4A4E55"><animateMotion dur="11.4s" repeatCount="indefinite" path="M490 100 L499 71 L497 71 L496 60 L490 100" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.2" fill="#4A4E55"><animateMotion dur="9.0s" repeatCount="indefinite" path="M517 70 L510 72 L518 83 L505 73 L517 70" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.2" fill="#4A4E55"><animateMotion dur="9.3s" repeatCount="indefinite" path="M493 68 L530 81 L484 105 L510 63 L493 68" calcMode="paced"/></circle><circle cx="0" cy="0" r="2.2" fill="#4A4E55"><animateMotion dur="10.6s" repeatCount="indefinite" path="M474 69 L481 60 L472 47 L482 71 L474 69" calcMode="paced"/></circle>
   <text x="36" y="90" class="s" font-size="16.5" fill="#9A9FA7" >Artificial life you can play in the browser.</text>
   <text x="36" y="116" class="m" font-size="12" fill="#5E636B" font-weight="600" letter-spacing="1.6" xml:space="preserve">TYPESCRIPT · SPIKING NEURAL NETS</text>
+</g>
+<g class="compact">
+  <text x="34" y="92" class="s" font-size="62" fill="#F2F3F5" font-weight="800" letter-spacing="-1.5" >EDEN//0</text>
+  <text x="570" y="92" class="m" font-size="44" fill="#FF2A2A" font-weight="700" text-anchor="end" >↗</text>
 </g>
 
 </svg>

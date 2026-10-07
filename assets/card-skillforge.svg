@@ -4,7 +4,7 @@
 .s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
 .breathe{animation:breathe 4s ease-in-out infinite}
-</style>
+.compact{display:none} @media (max-width:300px){.full{display:none} .compact{display:inline}}</style>
 <defs>
 <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
@@ -17,13 +17,19 @@
 </defs>
 
 <rect x="1" y="1" width="598" height="298" rx="16" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
-<g>
-  <text x="36" y="52" class="m" font-size="12" fill="#5E636B" font-weight="700" letter-spacing="2.4" xml:space="preserve">AI PRODUCT  ·  PRIVATE</text>
+<g class="full">
+  <text x="36" y="52" class="m" font-size="12" fill="#5E636B" font-weight="700" letter-spacing="2.4" xml:space="preserve">AI PRODUCT  ·  PRIVATE  ·  279 COMMITS</text>
   <text x="34" y="104" class="s" font-size="38" fill="#F2F3F5" font-weight="800" letter-spacing="-1.2" >SkillForge</text>
   <text x="36" y="146" class="s" font-size="18" fill="#9A9FA7" >AI career copilot. A CV goes in, a</text><text x="36" y="172" class="s" font-size="18" fill="#9A9FA7" >local LLM scores it on six dimensions</text><text x="36" y="198" class="s" font-size="18" fill="#9A9FA7" >and matches it to real vacancies.</text>
   <text x="36" y="244" class="m" font-size="13.5" fill="#B5BAC1" font-weight="500" >architecture · Django API · AI pipeline</text>
   <text x="36" y="268" class="m" font-size="12.5" fill="#5E636B" font-weight="500" xml:space="preserve">Django  ·  pgvector  ·  Celery  ·  Ollama  ·  React  ·  Expo</text>
   <polygon points="486.0,108.0 513.7,124.0 513.7,156.0 486.0,172.0 458.3,156.0 458.3,124.0" fill="none" stroke="#202226" stroke-width="1.2"/><polygon points="486.0,76.0 541.4,108.0 541.4,172.0 486.0,204.0 430.6,172.0 430.6,108.0" fill="none" stroke="#202226" stroke-width="1.2"/><path d="M486 140 L486.0 76.0" stroke="#202226" stroke-width="1.2"/><path d="M486 140 L541.4 108.0" stroke="#202226" stroke-width="1.2"/><path d="M486 140 L541.4 172.0" stroke="#202226" stroke-width="1.2"/><path d="M486 140 L486.0 204.0" stroke="#202226" stroke-width="1.2"/><path d="M486 140 L430.6 172.0" stroke="#202226" stroke-width="1.2"/><path d="M486 140 L430.6 108.0" stroke="#202226" stroke-width="1.2"/><polygon points="486.0,85.0 520.4,120.2 537.0,169.4 486.0,175.2 442.8,165.0 448.3,118.2" fill="#A9AEB5" fill-opacity=".07" stroke="#A9AEB5" stroke-width="1.5" stroke-linejoin="round"/><circle cx="486.0" cy="85.0" r="2.2" fill="#A9AEB5"/><circle cx="520.4" cy="120.2" r="2.2" fill="#A9AEB5"/><circle cx="537.0" cy="169.4" r="2.2" fill="#A9AEB5"/><circle cx="486.0" cy="175.2" r="2.2" fill="#A9AEB5"/><circle cx="442.8" cy="165.0" r="2.2" fill="#A9AEB5"/><circle cx="448.3" cy="118.2" r="2.2" fill="#A9AEB5"/><circle cx="537.0" cy="169.4" r="4.5" fill="#FF2A2A" filter="url(#glow)" class="breathe"/>
+</g>
+<g class="compact">
+  <circle cx="44" cy="62" r="7" fill="#FF2A2A" filter="url(#glow)"/>
+  <text x="66" y="72" class="m" font-size="28" fill="#5E636B" font-weight="700" letter-spacing="2" >PRIVATE</text>
+  <text x="34" y="172" class="s" font-size="78" fill="#F2F3F5" font-weight="800" letter-spacing="-2" >SkillForge</text>
+  <text x="36" y="236" class="s" font-size="36" fill="#9A9FA7" >AI career copilot</text>
 </g>
 
 </svg>

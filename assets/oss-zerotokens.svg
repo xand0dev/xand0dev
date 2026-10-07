@@ -4,7 +4,7 @@
 .s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
 .breathe{animation:breathe 4s ease-in-out infinite}
-</style>
+.compact{display:none} @media (max-width:300px){.full{display:none} .compact{display:inline}}</style>
 <defs>
 <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
@@ -17,12 +17,16 @@
 </defs>
 
 <rect x="1" y="1" width="598" height="138" rx="14" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
-<g>
+<g class="full">
   <text x="34" y="56" class="s" font-size="27" fill="#F2F3F5" font-weight="800" letter-spacing="-0.8" >zerotokens</text>
   <text x="578" y="30" class="m" font-size="14" fill="#5E636B" font-weight="700" text-anchor="end" >↗</text>
   <text x="500" y="74" class="m" font-size="28" font-weight="800" fill="#C9CDD3" text-anchor="middle" opacity="1">12,480<animate attributeName="opacity" values="1;1;0;0;0;0" keyTimes="0;.28;.33;.6;.66;1" dur="6s" repeatCount="indefinite" calcMode="discrete"/></text><text x="500" y="74" class="m" font-size="28" font-weight="800" fill="#C9CDD3" text-anchor="middle" opacity="0">3,912<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.28;.33;.6;.66;1" dur="6s" repeatCount="indefinite" calcMode="discrete"/></text><text x="500" y="74" class="m" font-size="38" font-weight="800" fill="#FF2A2A" text-anchor="middle" opacity="0">0<animate attributeName="opacity" values="0;0;0;0;1;1" keyTimes="0;.28;.33;.6;.66;1" dur="6s" repeatCount="indefinite" calcMode="discrete"/></text><text x="500" y="98" class="m" font-size="10" fill="#5E636B" font-weight="700" text-anchor="middle" letter-spacing="2" >TOKENS / RUN</text>
   <text x="36" y="90" class="s" font-size="16.5" fill="#9A9FA7" >Turns repeated LLM work into zero-token CI.</text>
   <text x="36" y="116" class="m" font-size="12" fill="#5E636B" font-weight="600" letter-spacing="1.6" xml:space="preserve">CLAUDE SKILL · PYTHON</text>
+</g>
+<g class="compact">
+  <text x="34" y="92" class="s" font-size="62" fill="#F2F3F5" font-weight="800" letter-spacing="-1.5" >zerotokens</text>
+  <text x="570" y="92" class="m" font-size="44" fill="#FF2A2A" font-weight="700" text-anchor="end" >↗</text>
 </g>
 
 </svg>

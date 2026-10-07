@@ -4,7 +4,7 @@
 .s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
 .breathe{animation:breathe 4s ease-in-out infinite}
-</style>
+.compact{display:none} @media (max-width:300px){.full{display:none} .compact{display:inline}}</style>
 <defs>
 <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
@@ -17,12 +17,16 @@
 </defs>
 
 <rect x="1" y="1" width="598" height="138" rx="14" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
-<g>
+<g class="full">
   <text x="34" y="56" class="s" font-size="27" fill="#F2F3F5" font-weight="800" letter-spacing="-0.8" >django-saas-toolkit</text>
   <text x="578" y="30" class="m" font-size="14" fill="#5E636B" font-weight="700" text-anchor="end" >↗</text>
   <rect x="432" y="35" width="136" height="21" rx="5" fill="#E0101A" fill-opacity=".14" opacity="1"><animate attributeName="opacity" values="1;0;0;1" keyTimes="0;.333;.666;1" dur="4.5s" repeatCount="indefinite" calcMode="discrete"/></rect><text x="440" y="50" class="m" font-size="12" fill="#C9CDD3" font-weight="600" ><tspan fill="#E0101A">›</tspan> /saas-review</text><rect x="432" y="59" width="136" height="21" rx="5" fill="#E0101A" fill-opacity=".14" opacity="0"><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.333;.666;1" dur="4.5s" repeatCount="indefinite" calcMode="discrete"/></rect><text x="440" y="74" class="m" font-size="12" fill="#C9CDD3" font-weight="600" ><tspan fill="#E0101A">›</tspan> /project-memory</text><rect x="432" y="83" width="136" height="21" rx="5" fill="#E0101A" fill-opacity=".14" opacity="0"><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.333;.666;1" dur="4.5s" repeatCount="indefinite" calcMode="discrete"/></rect><text x="440" y="98" class="m" font-size="12" fill="#C9CDD3" font-weight="600" ><tspan fill="#E0101A">›</tspan> /commit-prep</text>
   <text x="36" y="90" class="s" font-size="16.5" fill="#9A9FA7" >Review, memory and commits for Django SaaS.</text>
   <text x="36" y="116" class="m" font-size="12" fill="#5E636B" font-weight="600" letter-spacing="1.6" xml:space="preserve">CLAUDE PLUGIN</text>
+</g>
+<g class="compact">
+  <text x="34" y="92" class="s" font-size="44.2" fill="#F2F3F5" font-weight="800" letter-spacing="-1.5" >django-saas-toolkit</text>
+  <text x="570" y="92" class="m" font-size="44" fill="#FF2A2A" font-weight="700" text-anchor="end" >↗</text>
 </g>
 
 </svg>

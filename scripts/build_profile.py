@@ -85,6 +85,51 @@ def fetch():
     return payload["data"]["user"]
 
 
+STATS = Path(__file__).resolve().parent / "stats.json"
+PRIVATE_REPOS = {
+    "fitgym": ["FITGYM-backend", "FITGYM-frontend", "FITGYM-mobile", "FITGYM-packages"],
+    "skillforge": ["skillforge"],
+    "leadforge": ["leadforge"],
+    "cognitrace": ["CogniTrace"],
+}
+
+
+def proof():
+    """My commit counts in private repos and TraceFlow's Marketplace downloads.
+
+    CI's token cannot read private repos, so whatever a run can't fetch comes from the last
+    cached value in scripts/stats.json (refreshed whenever the script runs locally)."""
+    cached = json.loads(STATS.read_text()) if STATS.exists() else {}
+    fresh = dict(cached)
+    for key, repos in PRIVATE_REPOS.items():
+        try:
+            total = 0
+            for repo in repos:
+                req = urllib.request.Request(
+                    f"https://api.github.com/repos/{USER}/{repo}/contributors?per_page=100",
+                    headers={"Authorization": f"bearer {token()}"},
+                )
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    total += next((c["contributions"] for c in json.load(resp) if c["login"] == USER), 0)
+            fresh[key] = total
+        except Exception:
+            pass
+    try:
+        req = urllib.request.Request(
+            "https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery",
+            data=json.dumps({"filters": [{"criteria": [{"filterType": 7, "value": "xand0dev.traceflow-viz"}]}], "flags": 256}).encode(),
+            headers={"Content-Type": "application/json", "Accept": "application/json;api-version=7.1-preview.1"},
+        )
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            ext = json.load(resp)["results"][0]["extensions"][0]
+        fresh["traceflow_downloads"] = int(next(x["value"] for x in ext["statistics"] if x["statisticName"] == "downloadCount"))
+    except Exception:
+        pass
+    if fresh != cached:
+        STATS.write_text(json.dumps(fresh, indent=2) + "\n")
+    return fresh
+
+
 def calendar_stats(weeks):
     days = [d for w in weeks for d in w["contributionDays"]]
     counts = [d["contributionCount"] for d in days]
@@ -104,11 +149,17 @@ def static(body):
     return re.sub(r'<g class="in"(?: style="animation-delay:[\d.]+s")?>', "<g>", body)
 
 
-def svg(w, h, title, body):
+def svg(w, h, title, body, narrow=None):
+    """narrow: below this rendered width (px) the `.full` layout swaps for `.compact`, so
+    cards stay readable when GitHub shrinks them on a phone."""
+    css = CSS + (
+        f".compact{{display:none}} @media (max-width:{narrow}px){{.full{{display:none}} .compact{{display:inline}}}}"
+        if narrow else ""
+    )
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" '
         f'role="img" aria-label="{escape(title)}">\n<title>{escape(title)}</title>\n'
-        f"<style>{CSS}</style>\n<defs>{DEFS}</defs>\n{static(body)}\n</svg>\n"
+        f"<style>{css}</style>\n<defs>{DEFS}</defs>\n{static(body)}\n</svg>\n"
     )
 
 
@@ -229,7 +280,7 @@ def aura(cx, cy, u, ignite, E, T):
 def code_rain(x0, x1, top, height, E, build0, T):
     """Columns of 0/1 falling where the cube was: the cube dissolves into code and is rebuilt from it."""
     rnd = random.Random(31)
-    cols, step = [], 22
+    cols, step = [], 30
     for i in range(int((x1 - x0) / step)):
         x = x0 + i * step + rnd.uniform(-3, 3)
         n = rnd.randint(9, 16)
@@ -411,7 +462,7 @@ def voxel_drop(cx, cy, u, H, T=16.0, n=5, material="metal"):
         )
 
         # sparks thrown out where it touches down
-        spark = sparks(sx, sy + 0.5 * u, r1, T, rnd, count=5 if is_core else 3)
+        spark = sparks(sx, sy + 0.5 * u, r1, T, rnd, count=4 if is_core else 2)
         fade = "" if is_core else anim("opacity", [0, c0 + 0.3, c1, r0 - 0.02, r0 - 0.01, T], [1, 1, 0, 0, 1, 1])
         out.append(f"<g>{move}{fade}{trail}{block}</g>{spark}")
     land = ignite / T
@@ -510,7 +561,7 @@ def satellites(cx, cy, land, leave, T, u=30):
             f'keyTimes="0;{(a1 - 0.01) / T:.4f};{a1 / T:.4f};{(a1 + 0.35) / T:.4f};{(a1 + 0.9) / T:.4f};1" values="0;0;.9;.9;0;0"/></path>'
         )
         out.insert(0, beam)
-        out.append(sparks(cx + dx, cy + dy, a1, T, srnd, count=4, spread=0.7))
+        out.append(sparks(cx + dx, cy + dy, a1, T, srnd, count=3, spread=0.7))
         out.append(
             f'<g transform="translate({cx + dx} {cy + dy})"><g>'
             f'<animateTransform attributeName="transform" type="translate" dur="{T}s" repeatCount="indefinite" calcMode="spline" '
@@ -541,18 +592,25 @@ def hero(material="brushed"):
   keyTimes="0;.1625;.165;.168;.171;.175;.18;1" values="0 0;0 0;-3 2;3 -2;-2 1;1 0;0 0;0 0"/>
 <rect x="1" y="{top + 1}" width="{W - 2}" height="{ch - 2}" rx="20" fill="{BG}" stroke="url(#edge)" stroke-width="1.5"/>
 <g>
-  <circle cx="69" cy="{top + 76}" r="4" fill="{HOT}" filter="url(#glow)" class="breathe"/>
-  {text(84, top + 81, "OPEN TO FULL-STACK &amp; BACKEND ROLES", 12.5, MUTED, "m", 600, ls=2.4)}
   {name(176, "Oleksandr")}
   {name(258, "Riasnyi")}
+</g>
+<g class="full">
+  <circle cx="69" cy="{top + 76}" r="4" fill="{HOT}" filter="url(#glow)" class="breathe"/>
+  {text(84, top + 81, "OPEN TO FULL-STACK &amp; BACKEND ROLES", 12.5, MUTED, "m", 600, ls=2.4)}
   {text(64, top + 310, "Full-stack engineer &amp; product builder.", 23, BODY)}
   {text(64, top + 344, "DJANGO · REACT · REACT NATIVE · SWIFT", 12.5, DIM, "m", 600, ls=1.8)}
+</g>
+<g class="compact">
+  <circle cx="72" cy="{top + 70}" r="9" fill="{HOT}" filter="url(#glow)" class="breathe"/>
+  {text(64, top + 324, "Full-stack engineer", 44, BODY)}
+  {text(64, top + 372, "&amp; product builder.", 44, BODY)}
 </g>
 <g mask="url(#fade)">{vx}</g>
 {sats}
 </g>
 """
-    return svg(W, H, "Oleksandr Riasnyi — full-stack engineer and product builder", body)
+    return svg(W, H, "Oleksandr Riasnyi — full-stack engineer and product builder", body, narrow=560)
 
 
 # ---------------------------------------------------------------- section label
@@ -561,13 +619,16 @@ def hero(material="brushed"):
 def label(title):
     W, H = 1200, 52
     end = 22 + len(title) * (13 * 0.6 + 4) + 18
+    end2 = 26 + len(title) * (36 * 0.6 + 6) + 30
     body = f"""
 <defs><linearGradient id="hair" x1="0" x2="1"><stop offset="0" stop-color="{MUTED}" stop-opacity=".45"/><stop offset="1" stop-color="{MUTED}" stop-opacity="0"/></linearGradient></defs>
 <circle cx="5" cy="27" r="3.5" fill="{HOT}" filter="url(#glow)"/>
-{text(22, 32, title, 13, MUTED, "m", 700, ls=4)}
-<rect x="{end:.0f}" y="26.5" width="{W - end:.0f}" height="1.5" fill="url(#hair)"/>
+<g class="full">{text(22, 32, title, 13, MUTED, "m", 700, ls=4)}
+<rect x="{end:.0f}" y="26.5" width="{W - end:.0f}" height="1.5" fill="url(#hair)"/></g>
+<g class="compact">{text(26, 41, title, 36, MUTED, "m", 700, ls=6)}
+<rect x="{end2:.0f}" y="26" width="{W - end2:.0f}" height="3" fill="url(#hair)"/></g>
 """
-    return svg(W, H, title.title(), body)
+    return svg(W, H, title.title(), body, narrow=560)
 
 
 # ---------------------------------------------------------------- glyphs (static steel, one red light)
@@ -642,12 +703,17 @@ def glyph_graph(cx, cy):
 # ---------------------------------------------------------------- cards
 
 
+def fit(name, size, width, k=0.56):
+    """Largest font size (up to `size`) at which `name` fits in `width` user units."""
+    return round(min(size, width / (len(name) * k)), 1)
+
+
 def product_card(p):
     W, H = 600, 300
     desc = "".join(text(36, 146 + i * 26, escape(line), 18, BODY) for i, line in enumerate(p["desc"]))
     body = f"""
 {frame(W, H)}
-<g class="in">
+<g class="full">
   {text(36, 52, p["label"], 12, DIM, "m", 700, ls=2.4, extra='xml:space="preserve"')}
   {text(34, 104, p["name"], 38, TEXT, "s", 800, ls=-1.2)}
   {desc}
@@ -655,8 +721,14 @@ def product_card(p):
   {text(36, 268, escape("  ·  ".join(p["stack"])), 12.5, DIM, "m", 500, extra='xml:space="preserve"')}
   {p["glyph"]}
 </g>
+<g class="compact">
+  <circle cx="44" cy="62" r="7" fill="{HOT}" filter="url(#glow)"/>
+  {text(66, 72, p["tag"], 28, DIM, "m", 700, ls=2)}
+  {text(34, 172, p["name"], fit(p["name"], 78, 530), TEXT, "s", 800, ls=-2)}
+  {text(36, 236, escape(p["short"]), 36, BODY)}
+</g>
 """
-    return svg(W, H, f'{p["name"]} — {" ".join(p["desc"])}', body)
+    return svg(W, H, f'{p["name"]} — {" ".join(p["desc"])}', body, narrow=300)
 
 
 # small looping glyphs for the open-source tiles: steel line-work, one red accent each
@@ -761,15 +833,90 @@ def oss_tile(p):
     W, H = 600, 140
     body = f"""
 {frame(W, H, 14)}
-<g class="in">
+<g class="full">
   {text(34, 56, p["name"], 27, TEXT, "s", 800, ls=-0.8)}
   {text(W - 22, 30, "↗", 14, DIM, "m", 700, "end")}
   {p["glyph"]}
   {text(36, 90, escape(p["desc"]), 16.5, BODY)}
   {text(36, 116, p["meta"], 12, DIM, "m", 600, ls=1.6, extra='xml:space="preserve"')}
 </g>
+<g class="compact">
+  {text(34, 92, p["name"], fit(p["name"], 62, 470), TEXT, "s", 800, ls=-1.5)}
+  {text(W - 30, 92, "↗", 44, HOT, "m", 700, "end")}
+</g>
 """
-    return svg(W, H, f'{p["name"]} — {p["desc"]}', body)
+    return svg(W, H, f'{p["name"]} — {p["desc"]}', body, narrow=300)
+
+
+# ---------------------------------------------------------------- stack
+
+ICONS = json.loads((Path(__file__).resolve().parent / "stack_icons.json").read_text())  # Simple Icons (CC0)
+STACK = [  # the same six layers the hero's satellites carry
+    ("API", "backend", [("python", "Python"), ("django", "Django · DRF"), ("fastapi", "FastAPI")]),
+    ("WEB", "frontend", [("typescript", "TypeScript"), ("react", "React"), ("vite", "Vite")]),
+    ("iOS", "mobile · native", [("react", "React Native"), ("expo", "Expo"), ("swift", "Swift")]),
+    ("AI", "models", [("ollama", "Ollama"), ("claude", "Claude"), ("openai", "OpenAI")]),
+    ("DB", "data", [("postgresql", "PostgreSQL"), ("redis", "Redis"), ("sqlite", "SQLite · D1")]),
+    ("CI", "ship", [("docker", "Docker"), ("githubactions", "Actions"), ("cloudflare", "Cloudflare")]),
+]
+
+
+def stack_block():
+    W, H, T = 1200, 360, 12.0
+    used = {slug for _, _, items in STACK for slug, _ in items}
+    defs = "".join(f'<symbol id="i-{sl}" viewBox="0 0 24 24"><path d="{ICONS[sl]}"/></symbol>' for sl in sorted(used))
+    u = 11
+    k = 0.866 * u
+    Pm = lambda x, y, z: ((x - y) * k, (x + y) * 0.5 * u - z * u)
+
+    def mini_cube(cx, cy, scale=1.0):
+        f = lambda ps: pts([(cx + Pm(*q)[0] * scale, cy + (Pm(*q)[1] + u) * scale) for q in ps])
+        return (
+            f'<g filter="url(#glow)"><polygon points="{f([(0, 1, 0), (1, 1, 0), (1, 1, 1), (0, 1, 1)])}" fill="{RED}"/>'
+            f'<polygon points="{f([(1, 0, 0), (1, 1, 0), (1, 1, 1), (1, 0, 1)])}" fill="#7A0810"/>'
+            f'<polygon points="{f([(0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)])}" fill="{HOT}"/></g>'
+        )
+
+    def lit(n):
+        """A red wave runs across the icons, column by column, once a cycle."""
+        t = 0.6 + n * 0.28
+        kt = f"0;{t / T:.4f};{(t + 0.25) / T:.4f};{(t + 1.1) / T:.4f};1"
+        return (
+            f'<animate attributeName="fill" values="{STEEL_RIM};{STEEL_RIM};{HOT};{STEEL_RIM};{STEEL_RIM}" keyTimes="{kt}" dur="{T}s" repeatCount="indefinite"/>',
+            f'<animate attributeName="stroke" values="#2A2C31;#2A2C31;{RED};#2A2C31;#2A2C31" keyTimes="{kt}" dur="{T}s" repeatCount="indefinite"/>',
+        )
+
+    full, compact = [], []
+    n = 0
+    for c, (layer, role, items) in enumerate(STACK):
+        x = 40 + c * 190
+        cxc = 100 + c * 200
+        full.append(
+            mini_cube(x + 10, 42)
+            + text(x + 34, 50, layer, 17, HOT, "m", 800, ls=1)
+            + text(x, 74, role.upper(), 10.5, DIM, "m", 700, ls=1.6)
+        )
+        compact.append(mini_cube(cxc - 30, 36, 1.4) + text(cxc - 4, 62, layer, 32, HOT, "m", 800, ls=1))
+        for r, (slug, name) in enumerate(items):
+            fill_anim, stroke_anim = lit(n)
+            y = 96 + r * 82
+            full.append(
+                f'<rect x="{x}" y="{y}" width="52" height="52" rx="12" fill="#0B0C0E" stroke="#2A2C31" stroke-width="1.5">{stroke_anim}</rect>'
+                f'<use href="#i-{slug}" x="{x + 13}" y="{y + 13}" width="26" height="26" fill="{STEEL_RIM}">{fill_anim}</use>'
+                + text(x + 66, y + 32, escape(name), 16.5, TEXT if r == 0 else BODY, "s", 600 if r == 0 else 400)
+            )
+            yc = 98 + r * 86
+            compact.append(
+                f'<rect x="{cxc - 40}" y="{yc}" width="80" height="80" rx="18" fill="#0B0C0E" stroke="#2A2C31" stroke-width="2">{stroke_anim}</rect>'
+                f'<use href="#i-{slug}" x="{cxc - 24}" y="{yc + 16}" width="48" height="48" fill="{STEEL_RIM}">{fill_anim}</use>'
+            )
+            n += 1
+    body = (
+        f"<defs>{defs}</defs>{frame(W, H, 18)}"
+        f'<g class="full">{"".join(full)}</g><g class="compact">{"".join(compact)}</g>'
+    )
+    title = "Stack: " + "; ".join(f"{layer} — {', '.join(nm for _, nm in items)}" for layer, _, items in STACK)
+    return svg(W, H, title, body, narrow=560)
 
 
 # ---------------------------------------------------------------- skyline
@@ -828,14 +975,18 @@ def skyline(cal, stats):
     best_day = dt.date.fromisoformat(best["date"]).strftime("%b %-d")
     body = f"""
 {frame(W, H, 18)}
-<g class="in">
+<g class="full">
   {text(34, 74, f'{cal["totalContributions"]:,}', 44, TEXT, "s", 800, ls=-1.5)}
   {text(36, 102, f'contributions in the last year  ·  {stats["longest"]}-day longest streak  ·  best day {best["contributionCount"]} on {best_day}', 15, DIM, "s", 400, extra='xml:space="preserve"')}
 </g>
+<g class="compact">
+  {text(34, 98, f'{cal["totalContributions"]:,}', 84, TEXT, "s", 800, ls=-3)}
+  {text(36, 146, f'contributions · {stats["longest"]}-day streak', 36, DIM)}
+</g>
 {"".join(bars)}
-{"".join(months)}
+<g class="full">{"".join(months)}</g>
 """
-    return svg(W, H, f'{cal["totalContributions"]} contributions in the last year, longest streak {stats["longest"]} days', body)
+    return svg(W, H, f'{cal["totalContributions"]} contributions in the last year, longest streak {stats["longest"]} days', body, narrow=560)
 
 
 # ---------------------------------------------------------------- buttons
@@ -871,31 +1022,37 @@ def main():
     stats = calendar_stats(cal["weeks"])
     vb = data["voidbar"]
     vb_release = (vb.get("latestRelease") or {}).get("tagName", "")
+    pf = proof()
+    commits = lambda key: f'{pf[key]} COMMITS' if pf.get(key) else ""
 
     products = [
         dict(
-            slug="skillforge", name="SkillForge", label="AI PRODUCT  ·  PRIVATE",
+            slug="skillforge", name="SkillForge", label=f"AI PRODUCT  ·  PRIVATE  ·  {commits('skillforge')}",
+            tag="PRIVATE", short="AI career copilot",
             desc=["AI career copilot. A CV goes in, a", "local LLM scores it on six dimensions", "and matches it to real vacancies."],
             role="architecture · Django API · AI pipeline",
             stack=["Django", "pgvector", "Celery", "Ollama", "React", "Expo"],
             glyph=glyph_radar(486, 140, 64),
         ),
         dict(
-            slug="fitgym", name="FITGYM", label="MULTI-TENANT SAAS  ·  DEMO ↗",
+            slug="fitgym", name="FITGYM", label=f"MULTI-TENANT SAAS  ·  DEMO ↗  ·  {commits('fitgym')}",
+            tag="DEMO ↗", short="CRM for fitness clubs",
             desc=["CRM for fitness clubs: a tenant per", "club, memberships, schedule,", "QR check-in and a member app."],
             role="co-founder · backend · admin · mobile",
             stack=["Django", "PostgreSQL", "React", "React Native", "Docker"],
             glyph=glyph_qr(430, 84),
         ),
         dict(
-            slug="leadforge", name="LeadForge", label="LEAD RESEARCH CRM  ·  PRIVATE",
+            slug="leadforge", name="LeadForge", label=f"LEAD RESEARCH  ·  PRIVATE  ·  {commits('leadforge')}",
+            tag="PRIVATE", short="Lead research CRM",
             desc=["Evidence-first lead research for", "local businesses on open map data.", "No scraping, no paid API keys."],
             role="author · collector · scoring · CRM",
             stack=["Python", "TypeScript", "Overture Maps", "Cloudflare D1"],
             glyph=glyph_funnel(430, 82),
         ),
         dict(
-            slug="cognitrace", name="CogniTrace", label="INVESTIGATION WORKSPACE  ·  PRIVATE",
+            slug="cognitrace", name="CogniTrace", label=f"ANALYST BOARD  ·  PRIVATE  ·  {commits('cognitrace')}",
+            tag="PRIVATE", short="Evidence graph board",
             desc=["Self-hosted analyst board: entities,", "evidence-backed claims and live", "runs on a graph canvas."],
             role="author · FastAPI · realtime · graph UI",
             stack=["FastAPI", "Redis Streams", "React Flow", "WebSocket"],
@@ -908,7 +1065,8 @@ def main():
         dict(slug="eden", name="EDEN//0", desc="Artificial life you can play in the browser.",
              meta="TYPESCRIPT · SPIKING NEURAL NETS", glyph=g_life(498, 72)),
         dict(slug="traceflow", name="TraceFlow", desc="Architecture and live traffic, inside VS Code.",
-             meta="VS CODE · OPEN VSX", glyph=g_flow(500, 70)),
+             meta="VS CODE · OPEN VSX" + (f'   {pf["traceflow_downloads"]} DOWNLOADS' if pf.get("traceflow_downloads") else ""),
+             glyph=g_flow(500, 70)),
         dict(slug="zerotokens", name="zerotokens", desc="Turns repeated LLM work into zero-token CI.",
              meta="CLAUDE SKILL · PYTHON", glyph=g_counter(500, 66)),
         dict(slug="django-saas-toolkit", name="django-saas-toolkit", desc="Review, memory and commits for Django SaaS.",
@@ -924,6 +1082,8 @@ def main():
         "label-work.svg": label("SELECTED WORK"),
         "label-oss.svg": label("OPEN SOURCE"),
         "label-activity.svg": label("ACTIVITY"),
+        "label-stack.svg": label("STACK"),
+        "stack.svg": stack_block(),
         "btn-linkedin.svg": button("LINKEDIN", ICON_IN),
         "btn-email.svg": button("EMAIL", ICON_MAIL),
     }
@@ -931,6 +1091,8 @@ def main():
         files[f"card-{p['slug']}.svg"] = product_card(p)
     for p in oss:
         files[f"oss-{p['slug']}.svg"] = oss_tile(p)
+    # every animation removed: the base state is the finished cube with its satellites docked
+    files["hero-static.svg"] = re.sub(r"<animate(?:Transform|Motion)?\b[^>]*/>", "", files["hero.svg"]).replace(' class="breathe"', "")
     for name, content in files.items():
         (OUT / name).write_text(content)
     print(f"wrote {len(files)} files to {OUT}")
