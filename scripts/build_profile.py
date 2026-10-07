@@ -855,14 +855,14 @@ ICONS = json.loads((Path(__file__).resolve().parent / "stack_icons.json").read_t
 STACK = [
     ("API", "backend", [
         ("python", "Python", ""), ("django", "Django", "5.2"), ("django", "DRF", ""), ("fastapi", "FastAPI", ""),
-        ("celery", "Celery", "5.5"), ("@arq", "arq", ""), ("jsonwebtokens", "simplejwt", ""),
+        ("celery", "Celery", "5.5"), ("@ARQ", "arq", ""), ("jsonwebtokens", "simplejwt", ""),
     ]),
     ("WEB", "frontend", [
         ("typescript", "TypeScript", ""), ("react", "React", "19"), ("vite", "Vite", ""), ("reactquery", "TanStack Query", ""),
         ("reactrouter", "React Router", ""), ("@RF", "React Flow", ""), ("@PX", "PixiJS", ""),
     ]),
     ("iOS", "mobile · native", [
-        ("react", "React Native", "0.86"), ("expo", "Expo", "57"), ("expo", "Expo Router", ""), ("@Z", "zustand", ""),
+        ("react", "React Native", "0.86"), ("expo", "Expo", "57"), ("expo", "Expo Router", ""), ("@ZS", "zustand", ""),
         ("swift", "Swift", "6"), ("apple", "SwiftUI · AppKit", ""),
     ]),
     ("AI", "models", [
@@ -879,6 +879,25 @@ STACK = [
     ]),
 ]
 PRACTICE = ["Contract-first OpenAPI", "ADRs", "Evals · LLM-as-judge", "One CI gate per PR", "Semantic cache", "Monorepo"]
+
+
+def text_width(s, size, mono=False):
+    """Rough rendered width of s at size px; good enough to centre content inside a chip."""
+    if mono:
+        return len(s) * size * 0.6
+    em = 0.0
+    for ch in s:
+        if ch in "iljtfr.,·:;|!' ()":
+            em += 0.29
+        elif ch in "mwMW":
+            em += 0.84
+        elif ch.isupper():
+            em += 0.66
+        elif ch.isdigit():
+            em += 0.56
+        else:
+            em += 0.53
+    return em * size * 1.1  # system UI fonts run a little wider than the table
 
 
 def stack_block():
@@ -913,12 +932,15 @@ def stack_block():
         )
 
     def mark(sl, x, y, size, fill_anim):
-        if sl.startswith("@"):  # no brand icon available: a mono badge in the same slot
+        if sl.startswith("@"):  # no brand icon available: a lettered square in the same footprint
             label = sl[1:]
-            fs = size * (0.5 if len(label) <= 2 else 0.38)
+            fs = size * (0.42 if len(label) <= 2 else 0.33)
             return (
+                f'<rect x="{x + 0.75:.1f}" y="{y + 0.75:.1f}" width="{size - 1.5:.1f}" height="{size - 1.5:.1f}" rx="{size * 0.22:.1f}" '
+                f'fill="none" stroke="{STEEL_RIM}" stroke-width="{max(1.2, size * 0.07):.1f}">'
+                + fill_anim.replace('attributeName="fill"', 'attributeName="stroke"') + "</rect>"
                 f'<text x="{x + size / 2:.1f}" y="{y + size / 2 + fs * 0.36:.1f}" class="m" font-size="{fs:.1f}" font-weight="800" '
-                f'text-anchor="middle" fill="{STEEL_RIM}" letter-spacing=".5">{fill_anim}{label}</text>'
+                f'text-anchor="middle" fill="{STEEL_RIM}">{fill_anim}{label}</text>'
             )
         return f'<use href="#i-{sl}" x="{x:.1f}" y="{y:.1f}" width="{size}" height="{size}" fill="{STEEL_RIM}">{fill_anim}</use>'
 
@@ -934,16 +956,21 @@ def stack_block():
         )
         if row:
             full.append(f'<rect x="{left}" y="{y - 12}" width="{right - left}" height="1" fill="#141518"/>')
+        span = right - x0
+        natural = [18 + 9 + text_width(nm, 13.5) + (9 + text_width(v, 11, True) if v else 0) + 28 for _, nm, v in items]
+        extra = (span - sum(natural) - gap * (len(items) - 1)) / len(items)
+        assert extra >= 0, f"{layer} row overflows"
         x = x0
-        for sl, name, ver in items:
+        for (sl, name, ver), nat in zip(items, natural):
             fill_anim, stroke_anim = lit(n)
-            w = 12 + 18 + 10 + len(name) * 7.4 + (len(ver) * 6.8 + 8 if ver else 0) + 14
-            assert x + w <= right + 1, f"{layer} row overflows at {name}"
+            w = nat + extra
+            cx0 = x + (w - (nat - 28)) / 2  # centred content: icon, name, version
+            tx = cx0 + 18 + 9
             full.append(
                 f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="40" rx="10" fill="#0B0C0E" stroke="#24262A" stroke-width="1.3">{stroke_anim}</rect>'
-                + mark(sl, x + 12, y + 11, 18, fill_anim)
-                + text(f"{x + 40:.1f}", y + 25, escape(name), 13.5, TEXT, "s", 500)
-                + (text(f"{x + 40 + len(name) * 7.4 + 6:.1f}", y + 25, escape(ver), 11, DIM, "m", 600) if ver else "")
+                + mark(sl, cx0, y + 11, 18, fill_anim)
+                + text(f"{tx:.1f}", y + 25, escape(name), 13.5, TEXT, "s", 500)
+                + (text(f"{tx + text_width(name, 13.5) + 9:.1f}", y + 25, escape(ver), 11, DIM, "m", 600) if ver else "")
             )
             x += w + gap
             n += 1
@@ -964,13 +991,16 @@ def stack_block():
         + text(left + 30, y + 22, "HOW", 16, HOT, "m", 800, ls=1)
         + text(left + 30, y + 40, "PRACTICE", 10, DIM, "m", 700, ls=1.4)
     )
+    natural = [12 + 6 + text_width(nm, 13) + 30 for nm in PRACTICE]
+    extra = (right - x0 - sum(natural) - gap * (len(PRACTICE) - 1)) / len(PRACTICE)
     x = x0
-    for name in PRACTICE:
-        w = 16 + 10 + len(name) * 7.2 + 14
+    for name, nat in zip(PRACTICE, natural):
+        w = nat + extra
+        cx0 = x + (w - (nat - 30)) / 2
         full.append(
             f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="40" rx="20" fill="none" stroke="#3A2024" stroke-width="1.3"/>'
-            f'<circle cx="{x + 17:.1f}" cy="{y + 20}" r="3" fill="{HOT}"/>'
-            + text(f"{x + 28:.1f}", y + 25, escape(name), 13, BODY, "s", 500)
+            f'<circle cx="{cx0 + 3:.1f}" cy="{y + 20}" r="3" fill="{HOT}"/>'
+            + text(f"{cx0 + 15:.1f}", y + 25, escape(name), 13, BODY, "s", 500)
         )
         x += w + gap
     assert x <= right + gap + 1, "practice row overflows"
