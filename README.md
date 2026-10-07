@@ -1,46 +1,35 @@
-<div align="center">
-
-<img src="./assets/profile-dossier-v4.svg" width="100%" alt="Oleksandr Riasnyi — Full-Stack Developer building FITGYM" />
+<img src="assets/hero.svg" width="100%" alt="Oleksandr Riasnyi — full-stack engineer and product builder. Django, React, React Native, Swift." />
 
 <br/>
 
-[![FITGYM](https://img.shields.io/badge/FITGYM-E11D2E?style=for-the-badge&logoColor=white)](https://github.com/xand0dev/FITGYM-demo)
-[![LinkedIn](https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/oleksandr-riasnyi/)
-<img src="https://komarev.com/ghpvc/?username=xand0dev&amp;label=VIEWS&amp;color=30343C&amp;style=for-the-badge" alt="Profile views" />
+<img src="assets/label-work.svg" width="100%" alt="Selected work" />
 
-</div>
+<p align="center">
+  <a href="mailto:oleksandr.riasnyi.dev@gmail.com?subject=SkillForge%20demo"><img src="assets/card-skillforge.svg" width="49%" alt="SkillForge — AI career copilot: a local LLM scores a CV on six dimensions and matches it to real vacancies. Private." /></a>
+  <a href="https://github.com/xand0dev/FITGYM-demo"><img src="assets/card-fitgym.svg" width="49%" alt="FITGYM — multi-tenant CRM for fitness clubs with QR check-in and a member app. Demo available." /></a>
+  <a href="mailto:oleksandr.riasnyi.dev@gmail.com?subject=LeadForge%20demo"><img src="assets/card-leadforge.svg" width="49%" alt="LeadForge — evidence-first lead research for local businesses on open map data. Private." /></a>
+  <a href="mailto:oleksandr.riasnyi.dev@gmail.com?subject=CogniTrace%20demo"><img src="assets/card-cognitrace.svg" width="49%" alt="CogniTrace — self-hosted analyst board with an evidence graph and live runs. Private." /></a>
+</p>
 
-## About
+<img src="assets/label-oss.svg" width="100%" alt="Open source" />
 
-Full-stack developer working across Django APIs, React web apps, React Native mobile apps, and deployment.
+<p align="center">
+  <a href="https://github.com/xand0dev/VoidBar"><img src="assets/oss-voidbar.svg" width="49%" alt="VoidBar — your MacBook notch, finally useful. Swift 6, macOS." /></a>
+  <a href="https://github.com/xand0dev/eden-zero"><img src="assets/oss-eden.svg" width="49%" alt="EDEN//0 — artificial life you can play in the browser." /></a>
+  <a href="https://github.com/xand0dev/TraceFlow"><img src="assets/oss-traceflow.svg" width="49%" alt="TraceFlow — architecture and live traffic, inside VS Code." /></a>
+  <a href="https://github.com/xand0dev/zerotokens-skill"><img src="assets/oss-zerotokens.svg" width="49%" alt="zerotokens — turns repeated LLM work into zero-token CI." /></a>
+  <a href="https://github.com/xand0dev/django-saas-toolkit"><img src="assets/oss-django-saas-toolkit.svg" width="49%" alt="django-saas-toolkit — review, memory and commits for Django SaaS." /></a>
+  <a href="https://github.com/xand0dev/ai-pool-starter"><img src="assets/oss-ai-pool.svg" width="49%" alt="AI Pool Starter — one tool, the whole model pool. Workshop, KAI 2026." /></a>
+</p>
 
-I co-founded **FITGYM**, a multi-tenant CRM for fitness clubs, and work across its backend, admin panel, member app, infrastructure, and releases.
+<img src="assets/label-activity.svg" width="100%" alt="Activity" />
 
-## FITGYM stack
+<a href="https://github.com/xand0dev?tab=overview"><img src="assets/skyline.svg" width="100%" alt="Isometric contribution skyline for the last 12 months" /></a>
 
-<img src="./assets/fitgym-stack-v4.svg" width="100%" alt="FITGYM backend, admin panel, mobile app, and deployment stack" />
+<br/><br/>
 
-**[Screenshots, demos, and project status →](https://github.com/xand0dev/FITGYM-demo)**
-
-## Contribution streak
-
-<div align="center">
-
-<a href="https://github.com/xand0dev?tab=contributions">
-  <img src="https://github-readme-streak-stats-eight.vercel.app/?user=xand0dev&amp;theme=transparent&amp;hide_border=true&amp;card_width=760&amp;stroke=30363D&amp;ring=E11D2E&amp;fire=F43F4F&amp;currStreakNum=F7F8FA&amp;sideNums=F7F8FA&amp;currStreakLabel=F43F4F&amp;sideLabels=B6BBC5&amp;dates=8C929E" width="760" alt="Oleksandr's live GitHub contribution streak" />
-</a>
-
-</div>
-
-## Contact
-
-<div align="center">
-
-<img src="./assets/availability-card-v3.svg" width="100%" alt="Available for full-stack and Python Django backend roles" />
-
-<br/>
-
-[![LinkedIn](https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/oleksandr-riasnyi/)
-[![Email](https://img.shields.io/badge/EMAIL-E11D2E?style=for-the-badge&logo=gmail&logoColor=white)](mailto:oleksandr.riasnyi.dev@gmail.com)
-
-</div>
+<p align="center">
+  <a href="https://www.linkedin.com/in/oleksandr-riasnyi/"><img src="assets/btn-linkedin.svg" height="52" alt="LinkedIn" /></a>
+  &nbsp;
+  <a href="mailto:oleksandr.riasnyi.dev@gmail.com"><img src="assets/btn-email.svg" height="52" alt="Email" /></a>
+</p>

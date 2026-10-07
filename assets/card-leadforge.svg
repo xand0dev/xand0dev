@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300" role="img" aria-label="LeadForge — Evidence-first lead research for local businesses on open map data. No scraping, no paid API keys.">
+<title>LeadForge — Evidence-first lead research for local businesses on open map data. No scraping, no paid API keys.</title>
+<style>
+.s{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif} .m{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
+.breathe{animation:breathe 4s ease-in-out infinite}
+</style>
+<defs>
+<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#34363B"/><stop offset=".5" stop-color="#16171A"/><stop offset="1" stop-color="#26282C"/>
+</linearGradient>
+<filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+  <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<radialGradient id="redLight"><stop offset="0" stop-color="#E0101A" stop-opacity=".5"/>
+  <stop offset=".4" stop-color="#E0101A" stop-opacity=".12"/><stop offset="1" stop-color="#E0101A" stop-opacity="0"/></radialGradient>
+</defs>
+
+<rect x="1" y="1" width="598" height="298" rx="16" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
+<g>
+  <text x="36" y="52" class="m" font-size="12" fill="#5E636B" font-weight="700" letter-spacing="2.4" xml:space="preserve">LEAD RESEARCH CRM  ·  PRIVATE</text>
+  <text x="34" y="104" class="s" font-size="38" fill="#F2F3F5" font-weight="800" letter-spacing="-1.2" >LeadForge</text>
+  <text x="36" y="146" class="s" font-size="18" fill="#9A9FA7" >Evidence-first lead research for</text><text x="36" y="172" class="s" font-size="18" fill="#9A9FA7" >local businesses on open map data.</text><text x="36" y="198" class="s" font-size="18" fill="#9A9FA7" >No scraping, no paid API keys.</text>
+  <text x="36" y="244" class="m" font-size="13.5" fill="#B5BAC1" font-weight="500" >author · collector · scoring · CRM</text>
+  <text x="36" y="268" class="m" font-size="12.5" fill="#5E636B" font-weight="500" xml:space="preserve">Python  ·  TypeScript  ·  Overture Maps  ·  Cloudflare D1</text>
+  <rect x="430" y="82" width="130.0" height="10" rx="2" fill="#A9AEB5"/><text x="430" y="112" class="m" font-size="12.5" fill="#5E636B" ><tspan fill="#C9CDD3" font-weight="700">400</tspan> records</text><rect x="430" y="126" width="113.4" height="10" rx="2" fill="#5E636B"/><text x="430" y="156" class="m" font-size="12.5" fill="#5E636B" ><tspan fill="#C9CDD3" font-weight="700">349</tspan> unique</text><rect x="430" y="170" width="31.5" height="10" rx="2" fill="#FF2A2A" filter="url(#glow)"/><text x="430" y="200" class="m" font-size="12.5" fill="#5E636B" ><tspan fill="#C9CDD3" font-weight="700">97</tspan> qualified</text>
+</g>
+
+</svg>
