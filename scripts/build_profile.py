@@ -862,7 +862,7 @@ STACK = [  # the same six layers the hero's satellites carry
 
 
 def stack_block():
-    W, H, T = 1200, 360, 12.0
+    W, H, T = 1200, 318, 12.0
     used = {slug for _, _, items in STACK for slug, _ in items}
     defs = "".join(f'<symbol id="i-{sl}" viewBox="0 0 24 24"><path d="{ICONS[sl]}"/></symbol>' for sl in sorted(used))
     u = 11
@@ -888,27 +888,31 @@ def stack_block():
 
     full, compact = [], []
     n = 0
+    pad, colw = 44, (W - 88) / 6  # six equal columns, equal side padding
     for c, (layer, role, items) in enumerate(STACK):
-        x = 40 + c * 190
-        cxc = 100 + c * 200
+        x = pad + c * colw
+        cxc = pad + colw * (c + 0.5)
+        if c:
+            full.append(f'<rect x="{x - 14:.1f}" y="40" width="1" height="{H - 80}" fill="#16171A"/>')
+        # header: the cube marks the layer; label and role share one left edge
         full.append(
-            mini_cube(x + 10, 42)
-            + text(x + 34, 50, layer, 17, HOT, "m", 800, ls=1)
-            + text(x, 74, role.upper(), 10.5, DIM, "m", 700, ls=1.6)
+            mini_cube(x + 9, 46)
+            + text(f"{x + 30:.1f}", 54, layer, 16, HOT, "m", 800, ls=1)
+            + text(f"{x + 30:.1f}", 73, role.upper(), 10, DIM, "m", 700, ls=1.4)
         )
-        compact.append(mini_cube(cxc - 30, 36, 1.4) + text(cxc - 4, 62, layer, 32, HOT, "m", 800, ls=1))
+        compact.append(mini_cube(cxc - 30, 30, 1.4) + text(f"{cxc - 4:.1f}", 56, layer, 32, HOT, "m", 800, ls=1))
         for r, (slug, name) in enumerate(items):
             fill_anim, stroke_anim = lit(n)
-            y = 96 + r * 82
+            y = 104 + r * 66
             full.append(
-                f'<rect x="{x}" y="{y}" width="52" height="52" rx="12" fill="#0B0C0E" stroke="#2A2C31" stroke-width="1.5">{stroke_anim}</rect>'
-                f'<use href="#i-{slug}" x="{x + 13}" y="{y + 13}" width="26" height="26" fill="{STEEL_RIM}">{fill_anim}</use>'
-                + text(x + 66, y + 32, escape(name), 16.5, TEXT if r == 0 else BODY, "s", 600 if r == 0 else 400)
+                f'<rect x="{x:.1f}" y="{y}" width="46" height="46" rx="11" fill="#0B0C0E" stroke="#2A2C31" stroke-width="1.5">{stroke_anim}</rect>'
+                f'<use href="#i-{slug}" x="{x + 12:.1f}" y="{y + 12}" width="22" height="22" fill="{STEEL_RIM}">{fill_anim}</use>'
+                + text(f"{x + 58:.1f}", y + 28, escape(name), 15, TEXT, "s", 500)
             )
-            yc = 98 + r * 86
+            yc = 82 + r * 76
             compact.append(
-                f'<rect x="{cxc - 40}" y="{yc}" width="80" height="80" rx="18" fill="#0B0C0E" stroke="#2A2C31" stroke-width="2">{stroke_anim}</rect>'
-                f'<use href="#i-{slug}" x="{cxc - 24}" y="{yc + 16}" width="48" height="48" fill="{STEEL_RIM}">{fill_anim}</use>'
+                f'<rect x="{cxc - 36:.1f}" y="{yc}" width="72" height="72" rx="16" fill="#0B0C0E" stroke="#2A2C31" stroke-width="2">{stroke_anim}</rect>'
+                f'<use href="#i-{slug}" x="{cxc - 22:.1f}" y="{yc + 14}" width="44" height="44" fill="{STEEL_RIM}">{fill_anim}</use>'
             )
             n += 1
     body = (
