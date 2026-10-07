@@ -851,26 +851,52 @@ def oss_tile(p):
 # ---------------------------------------------------------------- stack
 
 ICONS = json.loads((Path(__file__).resolve().parent / "stack_icons.json").read_text())  # Simple Icons (CC0)
-STACK = [  # the same six layers the hero's satellites carry
-    ("API", "backend", [("python", "Python"), ("django", "Django · DRF"), ("fastapi", "FastAPI")]),
-    ("WEB", "frontend", [("typescript", "TypeScript"), ("react", "React"), ("vite", "Vite")]),
-    ("iOS", "mobile · native", [("react", "React Native"), ("expo", "Expo"), ("swift", "Swift")]),
-    ("AI", "models", [("ollama", "Ollama"), ("claude", "Claude"), ("openai", "OpenAI")]),
-    ("DB", "data", [("postgresql", "PostgreSQL"), ("redis", "Redis"), ("sqlite", "SQLite · D1")]),
-    ("CI", "ship", [("docker", "Docker"), ("githubactions", "Actions"), ("cloudflare", "Cloudflare")]),
+# the same six layers the hero's satellites carry; (icon slug or badge text, name, version)
+STACK = [
+    ("API", "backend", [
+        ("python", "Python", ""), ("django", "Django", "5.2"), ("django", "DRF", ""), ("fastapi", "FastAPI", ""),
+        ("celery", "Celery", "5.5"), ("@arq", "arq", ""), ("jsonwebtokens", "simplejwt", ""),
+    ]),
+    ("WEB", "frontend", [
+        ("typescript", "TypeScript", ""), ("react", "React", "19"), ("vite", "Vite", ""), ("reactquery", "TanStack Query", ""),
+        ("reactrouter", "React Router", ""), ("@RF", "React Flow", ""), ("@PX", "PixiJS", ""),
+    ]),
+    ("iOS", "mobile · native", [
+        ("react", "React Native", "0.86"), ("expo", "Expo", "57"), ("expo", "Expo Router", ""), ("@Z", "zustand", ""),
+        ("swift", "Swift", "6"), ("apple", "SwiftUI · AppKit", ""),
+    ]),
+    ("AI", "models", [
+        ("@GQ", "Groq", "gpt-oss-120b"), ("ollama", "Ollama", "qwen2.5"), ("openai", "OpenAI-compatible", ""),
+        ("claude", "Claude Code", ""), ("modelcontextprotocol", "MCP · skills", ""),
+    ]),
+    ("DB", "data", [
+        ("postgresql", "PostgreSQL", "16"), ("@VEC", "pgvector", "HNSW"), ("redis", "Redis", "7"), ("redis", "Redis Streams", ""),
+        ("sqlite", "SQLite", ""), ("cloudflare", "Cloudflare D1", ""),
+    ]),
+    ("CI", "ship", [
+        ("docker", "Docker Compose", ""), ("@AWS", "EC2", ""), ("@AWS", "S3 · CloudFront", ""), ("@AWS", "CloudWatch", ""),
+        ("caddy", "Caddy", ""), ("githubactions", "Actions", ""), ("pytest", "pytest", ""),
+    ]),
 ]
+PRACTICE = ["Contract-first OpenAPI", "ADRs", "Evals · LLM-as-judge", "One CI gate per PR", "Semantic cache", "Monorepo"]
 
 
 def stack_block():
-    W, H, T = 1200, 318, 12.0
-    used = {slug for _, _, items in STACK for slug, _ in items}
+    """An architecture map rather than a badge wall: one row per layer, real versions, then practice."""
+    W, H, T = 1200, 522, 14.0
+    used = {sl for _, _, items in STACK for sl, _, _ in items if not sl.startswith("@")}
     defs = "".join(f'<symbol id="i-{sl}" viewBox="0 0 24 24"><path d="{ICONS[sl]}"/></symbol>' for sl in sorted(used))
     u = 11
     k = 0.866 * u
     Pm = lambda x, y, z: ((x - y) * k, (x + y) * 0.5 * u - z * u)
 
-    def mini_cube(cx, cy, scale=1.0):
+    def mini_cube(cx, cy, scale=1.0, hollow=False):
         f = lambda ps: pts([(cx + Pm(*q)[0] * scale, cy + (Pm(*q)[1] + u) * scale) for q in ps])
+        if hollow:
+            return (
+                f'<g fill="none" stroke="{HOT}" stroke-width="1.4"><polygon points="{f([(0, 1, 0), (1, 1, 0), (1, 1, 1), (0, 1, 1)])}"/>'
+                f'<polygon points="{f([(1, 0, 0), (1, 1, 0), (1, 1, 1), (1, 0, 1)])}"/><polygon points="{f([(0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)])}"/></g>'
+            )
         return (
             f'<g filter="url(#glow)"><polygon points="{f([(0, 1, 0), (1, 1, 0), (1, 1, 1), (0, 1, 1)])}" fill="{RED}"/>'
             f'<polygon points="{f([(1, 0, 0), (1, 1, 0), (1, 1, 1), (1, 0, 1)])}" fill="#7A0810"/>'
@@ -878,48 +904,82 @@ def stack_block():
         )
 
     def lit(n):
-        """A red wave runs across the icons, column by column, once a cycle."""
-        t = 0.6 + n * 0.28
-        kt = f"0;{t / T:.4f};{(t + 0.25) / T:.4f};{(t + 1.1) / T:.4f};1"
+        """A red wave runs through the map, row by row, once a cycle."""
+        t = 0.5 + n * 0.2
+        kt = f"0;{t / T:.4f};{(t + 0.2) / T:.4f};{(t + 1.0) / T:.4f};1"
         return (
             f'<animate attributeName="fill" values="{STEEL_RIM};{STEEL_RIM};{HOT};{STEEL_RIM};{STEEL_RIM}" keyTimes="{kt}" dur="{T}s" repeatCount="indefinite"/>',
-            f'<animate attributeName="stroke" values="#2A2C31;#2A2C31;{RED};#2A2C31;#2A2C31" keyTimes="{kt}" dur="{T}s" repeatCount="indefinite"/>',
+            f'<animate attributeName="stroke" values="#24262A;#24262A;{RED};#24262A;#24262A" keyTimes="{kt}" dur="{T}s" repeatCount="indefinite"/>',
         )
 
+    def mark(sl, x, y, size, fill_anim):
+        if sl.startswith("@"):  # no brand icon available: a mono badge in the same slot
+            label = sl[1:]
+            fs = size * (0.5 if len(label) <= 2 else 0.38)
+            return (
+                f'<text x="{x + size / 2:.1f}" y="{y + size / 2 + fs * 0.36:.1f}" class="m" font-size="{fs:.1f}" font-weight="800" '
+                f'text-anchor="middle" fill="{STEEL_RIM}" letter-spacing=".5">{fill_anim}{label}</text>'
+            )
+        return f'<use href="#i-{sl}" x="{x:.1f}" y="{y:.1f}" width="{size}" height="{size}" fill="{STEEL_RIM}">{fill_anim}</use>'
+
+    left, x0, right, gap = 44, 212, W - 40, 8
     full, compact = [], []
     n = 0
-    pad, colw = 44, (W - 88) / 6  # six equal columns, equal side padding
-    for c, (layer, role, items) in enumerate(STACK):
-        x = pad + c * colw
-        cxc = pad + colw * (c + 0.5)
-        if c:
-            full.append(f'<rect x="{x - 14:.1f}" y="40" width="1" height="{H - 80}" fill="#16171A"/>')
-        # header: the cube marks the layer; label and role share one left edge
+    for row, (layer, role, items) in enumerate(STACK):
+        y = 34 + row * 68
         full.append(
-            mini_cube(x + 9, 46)
-            + text(f"{x + 30:.1f}", 54, layer, 16, HOT, "m", 800, ls=1)
-            + text(f"{x + 30:.1f}", 73, role.upper(), 10, DIM, "m", 700, ls=1.4)
+            mini_cube(left + 9, y + 6)
+            + text(left + 30, y + 22, layer, 16, HOT, "m", 800, ls=1)
+            + text(left + 30, y + 40, role.upper(), 10, DIM, "m", 700, ls=1.4)
         )
-        compact.append(mini_cube(cxc - 30, 30, 1.4) + text(f"{cxc - 4:.1f}", 56, layer, 32, HOT, "m", 800, ls=1))
-        for r, (slug, name) in enumerate(items):
+        if row:
+            full.append(f'<rect x="{left}" y="{y - 12}" width="{right - left}" height="1" fill="#141518"/>')
+        x = x0
+        for sl, name, ver in items:
             fill_anim, stroke_anim = lit(n)
-            y = 104 + r * 66
+            w = 12 + 18 + 10 + len(name) * 7.4 + (len(ver) * 6.8 + 8 if ver else 0) + 14
+            assert x + w <= right + 1, f"{layer} row overflows at {name}"
             full.append(
-                f'<rect x="{x:.1f}" y="{y}" width="46" height="46" rx="11" fill="#0B0C0E" stroke="#2A2C31" stroke-width="1.5">{stroke_anim}</rect>'
-                f'<use href="#i-{slug}" x="{x + 12:.1f}" y="{y + 12}" width="22" height="22" fill="{STEEL_RIM}">{fill_anim}</use>'
-                + text(f"{x + 58:.1f}", y + 28, escape(name), 15, TEXT, "s", 500)
+                f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="40" rx="10" fill="#0B0C0E" stroke="#24262A" stroke-width="1.3">{stroke_anim}</rect>'
+                + mark(sl, x + 12, y + 11, 18, fill_anim)
+                + text(f"{x + 40:.1f}", y + 25, escape(name), 13.5, TEXT, "s", 500)
+                + (text(f"{x + 40 + len(name) * 7.4 + 6:.1f}", y + 25, escape(ver), 11, DIM, "m", 600) if ver else "")
             )
-            yc = 82 + r * 76
-            compact.append(
-                f'<rect x="{cxc - 36:.1f}" y="{yc}" width="72" height="72" rx="16" fill="#0B0C0E" stroke="#2A2C31" stroke-width="2">{stroke_anim}</rect>'
-                f'<use href="#i-{slug}" x="{cxc - 22:.1f}" y="{yc + 14}" width="44" height="44" fill="{STEEL_RIM}">{fill_anim}</use>'
-            )
+            x += w + gap
             n += 1
+        yc = 30 + row * 80
+        compact.append(mini_cube(left + 14, yc + 14, 1.5) + text(left + 50, yc + 50, layer, 34, HOT, "m", 800, ls=1))
+        # icons only on a phone, so each mark appears once per row
+        for j, sl in enumerate(dict.fromkeys(sl for sl, _, _ in items)):
+            xc = 200 + j * 118
+            compact.append(
+                f'<rect x="{xc}" y="{yc}" width="70" height="70" rx="16" fill="#0B0C0E" stroke="#24262A" stroke-width="2"/>'
+                + mark(sl, xc + 16, yc + 16, 38, "")
+            )
+    # practice: how the work is done, not only what it is built with
+    y = 34 + 6 * 68 + 6
+    full.append(
+        f'<rect x="{left}" y="{y - 18}" width="{right - left}" height="1" fill="#1E2024"/>'
+        + mini_cube(left + 9, y + 6, hollow=True)
+        + text(left + 30, y + 22, "HOW", 16, HOT, "m", 800, ls=1)
+        + text(left + 30, y + 40, "PRACTICE", 10, DIM, "m", 700, ls=1.4)
+    )
+    x = x0
+    for name in PRACTICE:
+        w = 16 + 10 + len(name) * 7.2 + 14
+        full.append(
+            f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="40" rx="20" fill="none" stroke="#3A2024" stroke-width="1.3"/>'
+            f'<circle cx="{x + 17:.1f}" cy="{y + 20}" r="3" fill="{HOT}"/>'
+            + text(f"{x + 28:.1f}", y + 25, escape(name), 13, BODY, "s", 500)
+        )
+        x += w + gap
+    assert x <= right + gap + 1, "practice row overflows"
     body = (
         f"<defs>{defs}</defs>{frame(W, H, 18)}"
         f'<g class="full">{"".join(full)}</g><g class="compact">{"".join(compact)}</g>'
     )
-    title = "Stack: " + "; ".join(f"{layer} — {', '.join(nm for _, nm in items)}" for layer, _, items in STACK)
+    title = "Stack: " + "; ".join(f"{layer} — {', '.join((nm + ' ' + v).strip() for _, nm, v in items)}" for layer, _, items in STACK)
+    title += ". Practice: " + ", ".join(PRACTICE)
     return svg(W, H, title, body, narrow=560)
 
 

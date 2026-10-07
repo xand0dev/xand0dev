@@ -18,7 +18,7 @@
 
 <rect x="1" y="1" width="598" height="298" rx="16" fill="#050506" stroke="url(#edge)" stroke-width="1.5"/>
 <g class="full">
-  <text x="36" y="52" class="m" font-size="12" fill="#5E636B" font-weight="700" letter-spacing="2.4" xml:space="preserve">AI PRODUCT  ·  PRIVATE  ·  279 COMMITS</text>
+  <text x="36" y="52" class="m" font-size="12" fill="#5E636B" font-weight="700" letter-spacing="2.4" xml:space="preserve">AI PRODUCT  ·  PRIVATE  ·  281 COMMITS</text>
   <text x="34" y="104" class="s" font-size="38" fill="#F2F3F5" font-weight="800" letter-spacing="-1.2" >SkillForge</text>
   <text x="36" y="146" class="s" font-size="18" fill="#9A9FA7" >AI career copilot. A CV goes in, a</text><text x="36" y="172" class="s" font-size="18" fill="#9A9FA7" >local LLM scores it on six dimensions</text><text x="36" y="198" class="s" font-size="18" fill="#9A9FA7" >and matches it to real vacancies.</text>
   <text x="36" y="244" class="m" font-size="13.5" fill="#B5BAC1" font-weight="500" >architecture · Django API · AI pipeline</text>
