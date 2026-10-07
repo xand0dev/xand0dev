@@ -27,7 +27,7 @@
 
 <img src="assets/label-stack.svg" width="100%" alt="Stack" />
 
-<img src="assets/stack.svg" width="100%" alt="Stack by layer. API: Python, Django, FastAPI. Web: TypeScript, React, Vite. Mobile: React Native, Expo, Swift. AI: Ollama, Claude, OpenAI. Data: PostgreSQL, Redis, SQLite. Ship: Docker, GitHub Actions, Cloudflare." />
+<img src="assets/stack.svg" width="100%" alt="Stack by layer. API: Python, Django 5.2, DRF, FastAPI, Celery, arq. Web: TypeScript, React 19, Vite, TanStack Query, React Flow, PixiJS. App: React Native, Expo, Swift 6, SwiftUI and AppKit for macOS. AI: Groq, Ollama, Claude Code, MCP. Data: PostgreSQL 16 with pgvector, Redis, Cloudflare D1. Ops: Docker Compose, AWS EC2, S3, CloudFront, CloudWatch, Caddy, GitHub Actions, pytest. Practice: contract-first OpenAPI, ADRs, evals with LLM-as-judge." />
 
 <img src="assets/label-activity.svg" width="100%" alt="Activity" />
 

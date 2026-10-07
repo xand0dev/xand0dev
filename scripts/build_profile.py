@@ -513,7 +513,7 @@ def voxel_drop(cx, cy, u, H, T=16.0, n=5, material="metal"):
 
 
 # the layers a whole product needs; they dock around the cube once its core ignites
-SATELLITES = [("API", -250, -110), ("WEB", -265, 80), ("iOS", 235, -140), ("AI", 250, 40), ("DB", 228, 132), ("CI", -232, 136)]
+SATELLITES = [("API", -250, -110), ("WEB", -265, 80), ("APP", 235, -140), ("AI", 250, 40), ("DB", 228, 132), ("OPS", -232, 136)]
 
 
 def satellites(cx, cy, land, leave, T, u=30):
@@ -861,21 +861,21 @@ STACK = [
         ("typescript", "TypeScript", ""), ("react", "React", "19"), ("vite", "Vite", ""), ("reactquery", "TanStack Query", ""),
         ("reactrouter", "React Router", ""), ("@RF", "React Flow", ""), ("@PX", "PixiJS", ""),
     ]),
-    ("iOS", "mobile · native", [
+    ("APP", "mobile · macOS", [
         ("react", "React Native", "0.86"), ("expo", "Expo", "57"), ("expo", "Expo Router", ""), ("@ZS", "zustand", ""),
         ("swift", "Swift", "6"), ("apple", "SwiftUI · AppKit", ""),
     ]),
-    ("AI", "models", [
+    ("AI", "models · tooling", [
         ("@GQ", "Groq", "gpt-oss-120b"), ("ollama", "Ollama", "qwen2.5"), ("openai", "OpenAI-compatible", ""),
         ("claude", "Claude Code", ""), ("modelcontextprotocol", "MCP · skills", ""),
     ]),
     ("DB", "data", [
         ("postgresql", "PostgreSQL", "16"), ("@VEC", "pgvector", "HNSW"), ("redis", "Redis", "7"), ("redis", "Redis Streams", ""),
-        ("sqlite", "SQLite", ""), ("cloudflare", "Cloudflare D1", ""),
+        ("cloudflare", "Cloudflare D1", "SQLite"),
     ]),
-    ("CI", "ship", [
+    ("OPS", "ship · run", [
         ("docker", "Docker Compose", ""), ("@AWS", "EC2", ""), ("@AWS", "S3 · CloudFront", ""), ("@AWS", "CloudWatch", ""),
-        ("caddy", "Caddy", ""), ("githubactions", "Actions", ""), ("pytest", "pytest", ""),
+        ("caddy", "Caddy", ""), ("githubactions", "GitHub Actions", ""), ("pytest", "pytest", ""),
     ]),
 ]
 PRACTICE = ["Contract-first OpenAPI", "ADRs", "Evals · LLM-as-judge", "One CI gate per PR", "Semantic cache", "Monorepo"]
@@ -1123,9 +1123,9 @@ def main():
         dict(
             slug="skillforge", name="SkillForge", label=f"AI PRODUCT  ·  PRIVATE  ·  {commits('skillforge')}",
             tag="PRIVATE", short="AI career copilot",
-            desc=["AI career copilot. A CV goes in, a", "local LLM scores it on six dimensions", "and matches it to real vacancies."],
+            desc=["AI career copilot. A CV goes in, an", "LLM scores it on six dimensions and", "matches it to real vacancies."],
             role="architecture · Django API · AI pipeline",
-            stack=["Django", "pgvector", "Celery", "Ollama", "React", "Expo"],
+            stack=["Django", "pgvector", "Celery", "Groq", "React", "Expo"],
             glyph=glyph_radar(486, 140, 64),
         ),
         dict(
@@ -1155,11 +1155,11 @@ def main():
     ]
     oss = [
         dict(slug="voidbar", name="VoidBar", desc="Your MacBook notch, finally useful.",
-             meta=f'SWIFT 6 · MACOS   ★ {vb["stargazerCount"]}   {vb_release}', glyph=g_notch(492, 72)),
+             meta=" · ".join(x for x in ("SWIFT 6", "MACOS", f'★ {vb["stargazerCount"]}', vb_release) if x), glyph=g_notch(492, 72)),
         dict(slug="eden", name="EDEN//0", desc="Artificial life you can play in the browser.",
              meta="TYPESCRIPT · SPIKING NEURAL NETS", glyph=g_life(498, 72)),
         dict(slug="traceflow", name="TraceFlow", desc="Architecture and live traffic, inside VS Code.",
-             meta="VS CODE · OPEN VSX" + (f'   {pf["traceflow_downloads"]} DOWNLOADS' if pf.get("traceflow_downloads") else ""),
+             meta="VS CODE MARKETPLACE" + (f' · {pf["traceflow_downloads"]} DOWNLOADS' if pf.get("traceflow_downloads") else ""),
              glyph=g_flow(500, 70)),
         dict(slug="zerotokens", name="zerotokens", desc="Turns repeated LLM work into zero-token CI.",
              meta="CLAUDE SKILL · PYTHON", glyph=g_counter(500, 66)),
