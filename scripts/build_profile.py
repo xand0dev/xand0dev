@@ -848,6 +848,115 @@ def oss_tile(p):
     return svg(W, H, f'{p["name"]} — {p["desc"]}', body, narrow=300)
 
 
+# ---------------------------------------------------------------- featured: hackathon project
+
+
+def g_terrain(x0, y0, w, h):
+    """MARS//404: contour terrain, a walking loop base → targets → base, the astronaut
+    walking it, a point of no return and the turn-back clock counting down."""
+    rnd = random.Random(404)
+    out = [f'<clipPath id="mapclip"><rect x="{x0}" y="{y0}" width="{w}" height="{h}" rx="12"/></clipPath>',
+           f'<rect x="{x0}" y="{y0}" width="{w}" height="{h}" rx="12" fill="#08080A" stroke="#1F2125" stroke-width="1.5"/>',
+           '<g clip-path="url(#mapclip)">']
+    # contour rings around three hills
+    for hx, hy, n, sc in ((x0 + w * .30, y0 + h * .38, 6, 1.0), (x0 + w * .74, y0 + h * .30, 5, .9), (x0 + w * .62, y0 + h * .82, 4, .8)):
+        for k in range(1, n + 1):
+            r = k * 17 * sc
+            ps = []
+            for a in range(0, 360, 20):
+                t = math.radians(a)
+                rr = r * (1 + .18 * math.sin(3 * t + k) + rnd.uniform(-.04, .04))
+                ps.append((hx + rr * math.cos(t) * 1.35, hy + rr * math.sin(t)))
+            col = "#2A2C31" if k % 2 else "#1B1D21"
+            out.append(f'<path d="{closed(ps)}" fill="none" stroke="{col}" stroke-width="1.2"/>')
+    # steep ground hatched in red: the route never goes there
+    sx, sy = x0 + w * .30, y0 + h * .38
+    out.append(f'<ellipse cx="{sx}" cy="{sy}" rx="26" ry="18" fill="{RED}" fill-opacity=".10" stroke="{RED}" stroke-opacity=".35" stroke-dasharray="3 3"/>')
+    out.append(text(sx, sy + 4, "&gt;25°", 10, "#B33", "m", 700, "middle"))
+    # the loop
+    base = (x0 + w * .16, y0 + h * .72)
+    t1 = (x0 + w * .52, y0 + h * .58)
+    t2 = (x0 + w * .84, y0 + h * .60)
+    path = (f"M{base[0]:.0f} {base[1]:.0f} C{base[0] + 40:.0f} {base[1] - 40:.0f} {t1[0] - 60:.0f} {t1[1] + 30:.0f} {t1[0]:.0f} {t1[1]:.0f} "
+            f"S{t2[0] - 40:.0f} {t2[1] - 40:.0f} {t2[0]:.0f} {t2[1]:.0f} "
+            f"C{t2[0] - 10:.0f} {t2[1] + 70:.0f} {base[0] + 90:.0f} {base[1] + 50:.0f} {base[0]:.0f} {base[1]:.0f}")
+    out.append(f'<path d="{path}" fill="none" stroke="{STEEL_RIM}" stroke-opacity=".55" stroke-width="2.2" stroke-dasharray="6 5"/>')
+    # point of no return on the outbound leg
+    pn = (x0 + w * .70, y0 + h * .50)
+    out.append(f'<g><rect x="{pn[0] - 7:.0f}" y="{pn[1] - 7:.0f}" width="14" height="14" transform="rotate(45 {pn[0]:.0f} {pn[1]:.0f})" fill="{HOT}" filter="url(#glow)"/></g>')
+    out.append(text(pn[0], pn[1] - 16, "NO RETURN", 9.5, HOT, "m", 700, "middle", 1.5))
+    for (x, y), name in ((t1, "TARGET 1"), (t2, "TARGET 2")):
+        out.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="#0B0C0E" stroke="{STEEL}" stroke-width="2"/>')
+        out.append(text(x, y + 22, name, 9.5, MUTED, "m", 700, "middle", 1.5))
+    out.append(f'<rect x="{base[0] - 9:.0f}" y="{base[1] - 9:.0f}" width="18" height="18" rx="3" fill="#0B0C0E" stroke="{STEEL}" stroke-width="2"/>')
+    out.append(text(base[0], base[1] + 26, "BASE", 9.5, MUTED, "m", 700, "middle", 1.5))
+    # beacons
+    for bx, by in ((x0 + w * .40, y0 + h * .16), (x0 + w * .90, y0 + h * .20), (x0 + w * .10, y0 + h * .30)):
+        out.append(f'<polygon points="{bx:.0f},{by - 9:.0f} {bx + 7:.0f},{by + 5:.0f} {bx - 7:.0f},{by + 5:.0f}" fill="#7FD8E6" fill-opacity=".85"/>')
+        out.append(f'<circle cx="{bx:.0f}" cy="{by:.0f}" r="13" fill="none" stroke="#7FD8E6" stroke-opacity=".35"/>')
+    # the astronaut walking the loop
+    out.append(f'<circle r="5.5" fill="{HOT}" filter="url(#glow)"><animateMotion dur="9s" repeatCount="indefinite" path="{path}"/></circle>')
+    out.append("</g>")
+    return "".join(out)
+
+
+def g_clock(cx, cy):
+    """The one number the app is about: minutes until you must turn back."""
+    out = [text(cx, cy - 62, "RETURN IN", 12, MUTED, "m", 700, "middle", 3)]
+    for i, v in enumerate(("28", "16", "9")):
+        ops = ("1;1;0;0;0;0", "0;0;1;1;0;0", "0;0;0;0;1;1")[i]
+        out.append(
+            f'<text x="{cx}" y="{cy + 26}" class="s" font-size="104" font-weight="800" fill="{HOT}" text-anchor="middle" letter-spacing="-4" opacity="{1 if i == 0 else 0}">{v}'
+            f'<animate attributeName="opacity" values="{ops}" keyTimes="0;.32;.34;.65;.67;1" dur="9s" repeatCount="indefinite" calcMode="discrete"/></text>'
+        )
+    out.append(text(cx, cy + 52, "MIN", 13, STEEL, "m", 700, "middle", 4))
+    out.append(f'<rect x="{cx - 66}" y="{cy + 68}" width="132" height="28" rx="14" fill="none" stroke="#FFB020" stroke-width="1.5"/>')
+    out.append(text(cx, cy + 87, "GO · CAUTION", 12, "#FFB020", "m", 700, "middle", 1))
+    return "".join(out)
+
+
+def mission_card():
+    W, H = 1200, 400
+    body = f"""
+{frame(W, H, 18)}
+<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="18" fill="url(#redLight)" opacity=".35"/>
+<g class="full">
+  {text(40, 52, "NASA SPACE APPS 2026  ·  MARTIAN MAP  ·  48 H", 12, DIM, "m", 700, ls=2.4, extra='xml:space="preserve"')}
+  {text(38, 122, 'MARS<tspan fill="' + HOT + '">//</tspan>404', 64, TEXT, "s", 800, ls=-2.5)}
+  {text(40, 160, "Know when to turn back.", 24, HOT, "s", 700)}
+  {text(40, 204, "A Marswalk planner on real NASA terrain (HiRISE 1 m).", 17, BODY)}
+  {text(40, 230, "It counts oxygen, energy and time out and back, marks the", 17, BODY)}
+  {text(40, 256, "point of no return, says GO / NO-GO with a one-tap fix,", 17, BODY)}
+  {text(40, 282, "and plans radio beacons because Mars has no GPS.", 17, BODY)}
+  {text(40, 330, "team lead of 6 · 3D terrain · integration", 13.5, "#B5BAC1", "m", 500)}
+  {text(40, 356, escape("React 19  ·  Three.js  ·  Python + GDAL  ·  770 tests"), 12.5, DIM, "m", 500, extra='xml:space="preserve"')}
+  {g_terrain(560, 40, 420, 320)}
+  {g_clock(1088, 196)}
+  {text(W - 26, 36, "LIVE ↗", 13, HOT, "m", 700, "end", 2)}
+</g>
+<g class="compact">
+  <circle cx="48" cy="70" r="8" fill="{HOT}" filter="url(#glow)" class="breathe"/>
+  {text(72, 82, "NASA SPACE APPS 2026", 30, DIM, "m", 700, ls=2)}
+  {text(40, 220, 'MARS<tspan fill="' + HOT + '">//</tspan>404', 132, TEXT, "s", 800, ls=-5)}
+  {text(42, 300, "Know when to turn back.", 54, HOT, "s", 700)}
+  {text(42, 364, "Live 3D planner on real NASA terrain  ↗", 32, BODY)}
+</g>
+"""
+    return svg(W, H, "MARS//404 — know when to turn back. NASA Space Apps 2026 Marswalk planner on real NASA terrain.", body, narrow=560)
+
+
+def g_ascii(cx, cy):
+    """ASCII Render: a frame of video turning into glyphs, row by row."""
+    rows = ["  .:-=+*#%@", " .:-=+*#%@%", ".:-=+*#%@%#", ":-=+*#%@%#*", "-=+*#%@%#*+"]
+    out = []
+    for i, r in enumerate(rows):
+        out.append(
+            f'<text x="{cx - 52}" y="{cy - 30 + i * 16}" class="m" font-size="13" font-weight="700" fill="{HOT if i == 2 else STEEL_RIM}" xml:space="preserve" opacity=".2">{escape(r)}'
+            f'<animate attributeName="opacity" values=".15;1;1;.15" keyTimes="0;{.1 + i * .08:.2f};.8;1" dur="4s" repeatCount="indefinite"/></text>'
+        )
+    return "".join(out)
+
+
 # ---------------------------------------------------------------- stack
 
 ICONS = json.loads((Path(__file__).resolve().parent / "stack_icons.json").read_text())  # Simple Icons (CC0)
@@ -1165,6 +1274,8 @@ def main():
              meta="CLAUDE SKILL · PYTHON", glyph=g_counter(500, 66)),
         dict(slug="django-saas-toolkit", name="django-saas-toolkit", desc="Review, memory and commits for Django SaaS.",
              meta="CLAUDE PLUGIN", glyph=g_commands(500, 72)),
+        dict(slug="ascii-render", name="ASCII Render", desc="Any video into living ASCII art, in the browser.",
+             meta="TYPESCRIPT · MCP TOOL · MP4 / GIF", glyph=g_ascii(500, 70)),
         dict(slug="ai-pool", name="AI Pool Starter", desc="One tool, the whole model pool.",
              meta="WORKSHOP · KAI 2026", glyph=g_pool(500, 70)),
     ]
@@ -1174,6 +1285,8 @@ def main():
         "hero.svg": hero(),
         "skyline.svg": skyline(cal, stats),
         "label-work.svg": label("SELECTED WORK"),
+        "label-hackathon.svg": label("LATEST · HACKATHON"),
+        "mars404.svg": mission_card(),
         "label-oss.svg": label("OPEN SOURCE"),
         "label-activity.svg": label("ACTIVITY"),
         "label-stack.svg": label("STACK"),

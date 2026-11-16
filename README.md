@@ -5,6 +5,12 @@
 
 <br/>
 
+<img src="assets/label-hackathon.svg" width="100%" alt="Latest · Hackathon" />
+
+<a href="https://xand0dev.github.io/mars404/"><img src="assets/mars404.svg" width="100%" alt="MARS//404 — know when to turn back. NASA Space Apps 2026, Martian Map challenge, 48 hours, team lead of 6. A Marswalk planner on real NASA terrain (HiRISE 1 m): oxygen, energy and time out and back, the point of no return, GO / NO-GO with a one-tap fix, and radio beacons because Mars has no GPS. Live demo." /></a>
+
+<p align="center"><sub><a href="https://xand0dev.github.io/mars404/">Live demo</a> · <a href="https://github.com/xand0dev/mars404">Source</a> · <a href="https://www.spaceappschallenge.org/2026/find-a-team/mars404/?tab=project">Space Apps project</a></sub></p>
+
 <img src="assets/label-work.svg" width="100%" alt="Selected work" />
 
 <p align="center">
@@ -22,6 +28,7 @@
   <a href="https://github.com/xand0dev/TraceFlow"><img src="assets/oss-traceflow.svg" width="49%" alt="TraceFlow — architecture and live traffic, inside VS Code." /></a>
   <a href="https://github.com/xand0dev/zerotokens-skill"><img src="assets/oss-zerotokens.svg" width="49%" alt="zerotokens — turns repeated LLM work into zero-token CI." /></a>
   <a href="https://github.com/xand0dev/django-saas-toolkit"><img src="assets/oss-django-saas-toolkit.svg" width="49%" alt="django-saas-toolkit — review, memory and commits for Django SaaS." /></a>
+  <a href="https://github.com/xand0dev/ascii-render"><img src="assets/oss-ascii-render.svg" width="49%" alt="ASCII Render — any video into living ASCII art, in the browser. TypeScript, MCP tool." /></a>
   <a href="https://github.com/xand0dev/ai-pool-starter"><img src="assets/oss-ai-pool.svg" width="49%" alt="AI Pool Starter — one tool, the whole model pool. Workshop, KAI 2026." /></a>
 </p>
 
