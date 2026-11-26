@@ -5,6 +5,10 @@
 
 <br/>
 
+<a href="https://xand0dev.github.io/"><img src="assets/site.svg" width="100%" alt="Portfolio site xand0dev.github.io: every block is a project, every red cube is an agent. 8 projects to scroll through, 316 lessons in the Atlas, 16 certificates. Open the site." /></a>
+
+<p align="center"><sub><a href="https://xand0dev.github.io/"><b>xand0dev.github.io</b></a> · <a href="https://xand0dev.github.io/atlas">Atlas: SDD and human–agent teams</a> · <a href="https://xand0dev.github.io/certificates">Certificates</a></sub></p>
+
 <img src="assets/label-hackathon.svg" width="100%" alt="Latest · Hackathon" />
 
 <a href="https://xand0dev.github.io/mars404/"><img src="assets/mars404.svg" width="100%" alt="MARS//404 — know when to turn back. NASA Space Apps 2026, Martian Map challenge, 48 hours, team lead of 6. A Marswalk planner on real NASA terrain (HiRISE 1 m): oxygen, energy and time out and back, the point of no return, GO / NO-GO with a one-tap fix, and radio beacons because Mars has no GPS. Live demo." /></a>
@@ -43,6 +47,8 @@
 <br/><br/>
 
 <p align="center">
+  <a href="https://xand0dev.github.io/"><img src="assets/btn-site.svg" height="52" alt="Portfolio site" /></a>
+  &nbsp;
   <a href="https://www.linkedin.com/in/oleksandr-riasnyi/"><img src="assets/btn-linkedin.svg" height="52" alt="LinkedIn" /></a>
   &nbsp;
   <a href="mailto:oleksandr.riasnyi.dev@gmail.com"><img src="assets/btn-email.svg" height="52" alt="Email" /></a>

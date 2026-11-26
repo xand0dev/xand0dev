@@ -1195,6 +1195,70 @@ def skyline(cal, stats):
 # ---------------------------------------------------------------- buttons
 
 
+# ---------------------------------------------------------------- portfolio site
+
+
+def iso_cube(x, y, u, fill_top, fill_l, fill_r, stroke):
+    """One voxel in isometric view; (x, y) is the top vertex of the top face."""
+    h = u * 0.5
+    top = pts([(x, y), (x + u, y + h), (x, y + 2 * h), (x - u, y + h)])
+    left = pts([(x - u, y + h), (x, y + 2 * h), (x, y + 2 * h + u), (x - u, y + h + u)])
+    right = pts([(x + u, y + h), (x, y + 2 * h), (x, y + 2 * h + u), (x + u, y + h + u)])
+    sw = 'stroke-width="1"'
+    return (f'<polygon points="{left}" fill="{fill_l}" stroke="{stroke}" {sw}/>'
+            f'<polygon points="{right}" fill="{fill_r}" stroke="{stroke}" {sw}/>'
+            f'<polygon points="{top}" fill="{fill_top}" stroke="{stroke}" {sw}/>')
+
+
+def g_colony(cx, cy, u=17):
+    """A small voxel colony like the one on the site: grey blocks are projects, red ones are being worked on."""
+    # (grid x, grid z, height, red)
+    towers = [(0, 0, 5, True), (2, 0, 3, False), (-2, 1, 2, False), (1, 2, 4, False), (-1, -2, 3, False),
+              (3, -2, 2, False), (-3, -1, 4, False), (2, 3, 2, True), (-2, 3, 1, False), (4, 1, 1, False),
+              (0, -4, 2, False), (-4, 2, 1, False)]
+    out = []
+    order = sorted(((gx, gz, k, red) for gx, gz, hgt, red in towers for k in range(hgt)), key=lambda t: (t[0] + t[1], t[2]))
+    for gx, gz, k, red in order:
+        x = cx + (gx - gz) * u
+        y = cy + (gx + gz) * u * 0.5 - k * u
+        if red:
+            out.append(iso_cube(x, y, u, "#FF4A4A", "#B80D16", "#E0101A", "#FF8A8A"))
+        else:
+            out.append(iso_cube(x, y, u, "#3A3D42", "#16171A", "#24262B", "#4A4E55"))
+    agents = [(-60, 70), (70, 52), (-110, 20), (120, 96), (20, 118)]
+    for i, (dx, dy) in enumerate(agents):
+        out.append(f'<rect x="{cx + dx - 4}" y="{cy + dy - 4}" width="8" height="8" fill="{HOT}" filter="url(#glow)" class="breathe" style="animation-delay:{i * 0.7:.1f}s"/>')
+    return f'<ellipse cx="{cx}" cy="{cy + 40}" rx="230" ry="110" fill="url(#redLight)" opacity=".55"/>' + "".join(out)
+
+
+def site_card():
+    W, H = 1200, 340
+    stats = [("8", "projects to scroll through"), ("316", "lessons in the Atlas"), ("16", "certificates")]
+    cols = "".join(
+        text(40 + i * 200, 262, n, 34, TEXT if i else HOT, "s", 800, ls=-1) + text(40 + i * 200, 286, d, 12, DIM, "m", 600)
+        for i, (n, d) in enumerate(stats)
+    )
+    body = f"""
+{frame(W, H, 18)}
+<g class="full">
+  {text(40, 52, "PORTFOLIO SITE", 12, DIM, "m", 700, ls=2.4)}
+  {text(38, 118, "xand0dev.github.io", 56, TEXT, "s", 800, ls=-2)}
+  {text(40, 162, "Every block is a project, every red cube is an agent.", 19, BODY)}
+  {text(40, 190, "Scroll and it walks you through them one at a time.", 19, BODY)}
+  {cols}
+  {g_colony(900, 150)}
+  {text(W - 26, 36, "OPEN ↗", 13, HOT, "m", 700, "end", 2)}
+</g>
+<g class="compact">
+  <circle cx="48" cy="70" r="8" fill="{HOT}" filter="url(#glow)" class="breathe"/>
+  {text(72, 82, "PORTFOLIO SITE", 30, DIM, "m", 700, ls=2)}
+  {text(40, 200, "xand0dev.github.io", 96, TEXT, "s", 800, ls=-4)}
+  {text(42, 280, "8 projects · Atlas · certificates  ↗", 38, BODY)}
+</g>
+"""
+    return svg(W, H, "Portfolio site xand0dev.github.io: 8 projects as a voxel colony, an Atlas of 316 lessons and 16 certificates.", body, narrow=560)
+
+
 def button(label, icon):
     W, H = 260, 56
     body = f"""
@@ -1209,6 +1273,11 @@ def button(label, icon):
 ICON_IN = (
     f'<rect x="26" y="15" width="26" height="26" rx="5" fill="none" stroke="{STEEL}" stroke-width="1.8"/>'
     + text(39, 34, "in", 14, STEEL, "s", 800, "middle")
+)
+ICON_SITE = (
+    f'<rect x="24" y="16" width="30" height="24" rx="4" fill="none" stroke="{STEEL}" stroke-width="1.8"/>'
+    f'<path d="M24 22 H54" stroke="{STEEL}" stroke-width="1.8"/>'
+    f'<rect x="33" y="27" width="8" height="8" fill="{HOT}"/>'
 )
 ICON_MAIL = (
     f'<rect x="24" y="17" width="30" height="22" rx="4" fill="none" stroke="{STEEL}" stroke-width="1.8"/>'
@@ -1293,6 +1362,8 @@ def main():
         "stack.svg": stack_block(),
         "btn-linkedin.svg": button("LINKEDIN", ICON_IN),
         "btn-email.svg": button("EMAIL", ICON_MAIL),
+        "site.svg": site_card(),
+        "btn-site.svg": button("PORTFOLIO", ICON_SITE),
     }
     for p in products:
         files[f"card-{p['slug']}.svg"] = product_card(p)
